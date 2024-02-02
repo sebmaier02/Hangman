@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		80BC4C9C2B6BF2D7006574A0 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BC4C9B2B6BF2D7006574A0 /* GameView.swift */; };
-		80BC4C9E2B6BF7EE006574A0 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BC4C9D2B6BF7EE006574A0 /* APIConstants.swift */; };
 		967256192B59CAE800BF2362 /* GuessTheSongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967256182B59CAE800BF2362 /* GuessTheSongApp.swift */; };
 		9672561B2B59CAE800BF2362 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672561A2B59CAE800BF2362 /* ContentView.swift */; };
 		9672561D2B59CAE900BF2362 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9672561C2B59CAE900BF2362 /* Assets.xcassets */; };
@@ -17,7 +16,6 @@
 
 /* Begin PBXFileReference section */
 		80BC4C9B2B6BF2D7006574A0 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		80BC4C9D2B6BF7EE006574A0 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		967256152B59CAE800BF2362 /* GuessTheSong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheSong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967256182B59CAE800BF2362 /* GuessTheSongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheSongApp.swift; sourceTree = "<group>"; };
 		9672561A2B59CAE800BF2362 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,7 +56,6 @@
 				967256182B59CAE800BF2362 /* GuessTheSongApp.swift */,
 				9672561A2B59CAE800BF2362 /* ContentView.swift */,
 				80BC4C9B2B6BF2D7006574A0 /* GameView.swift */,
-				80BC4C9D2B6BF7EE006574A0 /* APIConstants.swift */,
 				9672561C2B59CAE900BF2362 /* Assets.xcassets */,
 				9672561E2B59CAE900BF2362 /* Preview Content */,
 			);
@@ -143,7 +140,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80BC4C9E2B6BF7EE006574A0 /* APIConstants.swift in Sources */,
 				9672561B2B59CAE800BF2362 /* ContentView.swift in Sources */,
 				80BC4C9C2B6BF2D7006574A0 /* GameView.swift in Sources */,
 				967256192B59CAE800BF2362 /* GuessTheSongApp.swift in Sources */,
