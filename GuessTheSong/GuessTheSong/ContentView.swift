@@ -23,10 +23,6 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
-        .background(
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.white]), startPoint: .bottom, endPoint: .top)
-                .edgesIgnoringSafeArea(.all)
-        )
     }
 }
 
@@ -43,7 +39,7 @@ private struct ButtonView: View {
             // Action for Medium Game button
         }) {
             Text(text)
-                .font(.title2)
+                .font(.title)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
                 .padding()
