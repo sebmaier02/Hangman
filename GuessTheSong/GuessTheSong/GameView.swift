@@ -104,7 +104,8 @@ struct GameView: View {
                             
                             if end {
                                 Spacer()
-                                Button(action: {
+                                
+                                Button {
                                     if rounds == 10 {
                                         highscoreQuick = score
                                     } else if rounds == 20 {
@@ -113,7 +114,7 @@ struct GameView: View {
                                         highscoreInfinity = score
                                     }
                                     dismiss()
-                                }) {
+                                } label: {
                                     Text("End game")
                                         .font(.title2)
                                         .fontWeight(.semibold)
@@ -123,8 +124,7 @@ struct GameView: View {
                                         .background(Color.blue)
                                         .cornerRadius(20)
                                         .shadow(color: Color.blue.opacity(0.5), radius: 10, x: 0, y: 5)
-                                }
-                            }
+                                }                          }
                             
                             Spacer()
                         }
@@ -159,27 +159,18 @@ struct GameView: View {
             }
             .toolbar{
                 ToolbarItem(placement: .principal) {
-                    if infinityRound {
-                        Text("Round: \(roundsPlayed)")
-                            .padding()
-                            .foregroundStyle(Color.white)
-                            .font(.title3)
-                            .padding(.trailing, 5)
-                            .background(Color.blue)
-                            .cornerRadius(20)
-                            .shadow(color: Color.blue.opacity(0.5), radius: 10, x: 0, y: 5)
-                            .padding(.top, 80)
-                    } else {
-                        Text("Round: \(roundsPlayed) of \(rounds)")
-                            .padding()
-                            .foregroundStyle(Color.white)
-                            .font(.title3)
-                            .padding(.trailing, 5)
-                            .background(Color.blue)
-                            .cornerRadius(20)
-                            .shadow(color: Color.blue.opacity(0.5), radius: 10, x: 0, y: 5)
-                            .padding(.top, 80)
-                    }
+                    let text: String = infinityRound ? "Round: \(roundsPlayed)   Score: \(score)"
+                    : "Round: \(roundsPlayed) of \(rounds)   Score: \(score)"
+                    
+                    Text(text)
+                        .padding()
+                        .foregroundStyle(Color.white)
+                        .font(.title3)
+                        .background(Color.blue)
+                        .cornerRadius(20)
+                        .shadow(color: Color.blue.opacity(0.5), radius: 10, x: 0, y: 5)
+                        .padding(.top, 50)
+                        .frame(minWidth: 0, maxWidth: .infinity)
                 }
             }
         }
@@ -209,6 +200,8 @@ struct GameView: View {
                             .stroke(Color(.systemGray5), lineWidth: 1)
                     )
                     .padding(.vertical, 10)
+                    .autocorrectionDisabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                    .textInputAutocapitalization(TextInputAutocapitalization.never)
             }
             .padding()
         }
