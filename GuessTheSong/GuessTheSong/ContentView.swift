@@ -16,15 +16,15 @@ struct ContentView: View {
                     .padding(.horizontal, 20)
                     .padding(.vertical, 40)
                 
-                NavigationLink(destination: StartGameView(mode: "Quick", description: "tobi is a huso")) {
+                NavigationLink(destination: StartGameView(mode: "Quick")) {
                     ButtonView(text: "Quick")
                 }
                 
-                NavigationLink(destination: StartGameView(mode: "Medium", description: "tobi is a huso")) {
+                NavigationLink(destination: StartGameView(mode: "Medium")) {
                     ButtonView(text: "Medium")
                 }
                 
-                NavigationLink(destination: StartGameView(mode: "Infinity", description: "tobi is a huso")) {
+                NavigationLink(destination: StartGameView(mode: "Infinity")) {
                     ButtonView(text: "Infinity")
                 }
                 

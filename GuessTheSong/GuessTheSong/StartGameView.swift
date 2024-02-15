@@ -10,7 +10,6 @@ import SwiftUI
 struct StartGameView: View {
     var mode: String
     @State var rounds: Int = 0
-    var description: String
     @Environment(\.dismiss) var dismiss
     @AppStorage("highscoreQuick") var highscoreQuick: Int = 0
     @AppStorage("highscoreMedium") var highscoreMedium: Int = 0
@@ -18,14 +17,6 @@ struct StartGameView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Spacer()
-            
-            Text("Description")
-                .font(.largeTitle)
-                .padding(.bottom)
-            
-            Text(description)
-                .font(.title2)
             
             Spacer()
             
@@ -35,26 +26,25 @@ struct StartGameView: View {
             
             if mode == "Quick" {
                 Group {
-                    Text("You play 10 rounds")
-                    Text("Title and interpret correct: 100 points")
-                    Text("Title ore interpret correct: 50 points")
-                    Text("Neither: 0 points")
+                    Text("In Quick mode you play 10 rounds and try to beat your current highscore.")
+                    Text("For each correct guess of song title or interpret you get 50 points.")
+                    Text("Can you beat your highscore.")
+                    
                 }
                 .font(.title2)
             } else if mode == "Medium" {
                 Group {
-                    Text("You play 20 rounds")
-                    Text("Title and interpret correct: 100 points")
-                    Text("Title ore interpret correct: 50 points")
-                    Text("Neither: 0 points")
+                    Text("In Medium mode you play 20 rounds and try to beat your current highscore.")
+                    Text("For each correct guess of song title or interpret you get 50 points.")
+                    Text("Can you beat your highscore.")
                 }
                 .font(.title2)
             } else if mode == "Infinity" {
                 Group {
-                    Text("There is no round limit!!!!")
-                    Text("Title and interpret correct: 100 points")
-                    Text("Title ore interpret correct: 50 points")
-                    Text("Neither: 0 points and Gameover!")
+                    Text("In infinty mode you can play as long as you answer correct.")
+                    Text("If you answer incorrectly your round is over and you have to try and beat your highscore again.")
+                    Text("For each correct guess of song title or interpret you get 50 points.")
+                    Text("Can you beat your highscore")
                 }
                 .font(.title2)
             }
@@ -103,5 +93,5 @@ struct StartGameView: View {
     }
 }
 #Preview {
-    StartGameView(mode: "Infinity", description: "lol")
+    StartGameView(mode: "Infinity")
 }
