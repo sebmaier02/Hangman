@@ -28,7 +28,13 @@ struct GameView: View {
             VStack (alignment: .center){
                 if isPlaying && !submitted {
                     VStack {
-                        Text("Listen").font(.system(size: 100))
+                        Text("Listen carefully").font(.largeTitle)
+                            .padding(.top, 50)
+                        
+                        Image("logogood")
+                            .resizable()
+                            .scaledToFill()
+                            .padding(.top, -50)
                     }
                     .padding()
                     .onAppear {
@@ -54,7 +60,7 @@ struct GameView: View {
                                 submitted.toggle()
                             }) {
                                 Text("Submit")
-                                    .font(.title2)
+                                    .font(.title)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.white)
                                     .padding()
@@ -116,7 +122,7 @@ struct GameView: View {
                                     dismiss()
                                 } label: {
                                     Text("End game")
-                                        .font(.title2)
+                                        .font(.title)
                                         .fontWeight(.semibold)
                                         .foregroundColor(.white)
                                         .padding()
@@ -203,7 +209,7 @@ struct GameView: View {
                     .autocorrectionDisabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     .textInputAutocapitalization(TextInputAutocapitalization.never)
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
 }

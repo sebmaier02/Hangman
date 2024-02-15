@@ -8,6 +8,13 @@ struct ContentView: View {
             VStack(spacing: 30) {
                 Spacer()
                 
+                Image("logogood")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding(.top, -100)
+                    
+                
                 Text("Welcome to Guess the Song!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -15,6 +22,7 @@ struct ContentView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 40)
+                    .padding(.top, -100)
                 
                 NavigationLink(destination: StartGameView(mode: "Quick")) {
                     ButtonView(text: "Quick")
@@ -30,7 +38,7 @@ struct ContentView: View {
                 
                 Spacer()
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
 }

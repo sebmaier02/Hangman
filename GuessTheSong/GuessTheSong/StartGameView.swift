@@ -16,22 +16,23 @@ struct StartGameView: View {
     @AppStorage("highscoreInfinity") var highscoreInfinity: Int = 0
     
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .center) {
             
             Spacer()
             
             Text("Rules")
                 .font(.largeTitle)
                 .padding(.bottom)
+                
             
             if mode == "Quick" {
                 Group {
                     Text("In Quick mode you play 10 rounds and try to beat your current highscore.")
                     Text("For each correct guess of song title or interpret you get 50 points.")
                     Text("Can you beat your highscore.")
-                    
                 }
                 .font(.title2)
+                .multilineTextAlignment(.center)
             } else if mode == "Medium" {
                 Group {
                     Text("In Medium mode you play 20 rounds and try to beat your current highscore.")
@@ -39,28 +40,36 @@ struct StartGameView: View {
                     Text("Can you beat your highscore.")
                 }
                 .font(.title2)
+                .multilineTextAlignment(.center)
             } else if mode == "Infinity" {
                 Group {
-                    Text("In infinty mode you can play as long as you answer correct.")
+                    Text("In Infinty mode you can play as long as you answer correct.")
                     Text("If you answer incorrectly your round is over and you have to try and beat your highscore again.")
                     Text("For each correct guess of song title or interpret you get 50 points.")
                     Text("Can you beat your highscore")
                 }
                 .font(.title2)
+                .multilineTextAlignment(.center)
             }
             
             Spacer()
             
+            
+            Text("Highscore")
+                .font(.largeTitle)
+                .padding(.bottom)
+            
             if mode == "Quick" {
-                Text("Highscore: \(highscoreQuick)")
-                    .font(.largeTitle)
+                Text("\(highscoreQuick)")
+                    .font(.title2)
             } else if mode == "Medium" {
-                Text("Highscore: \(highscoreMedium)")
-                    .font(.largeTitle)
+                Text("\(highscoreMedium)")
+                    .font(.title2)
             } else if mode == "Infinity" {
-                Text("Highscore: \(highscoreInfinity)")
-                    .font(.largeTitle)
+                Text("\(highscoreInfinity)")
+                    .font(.title2)
             }
+            
             
             Spacer()
             
@@ -68,7 +77,7 @@ struct StartGameView: View {
                 GameView(rounds: rounds)
             } label: {
                 Text("Start")
-                    .font(.title2)
+                    .font(.title)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .padding()
@@ -80,7 +89,7 @@ struct StartGameView: View {
             
             Spacer()
         }
-        .padding()
+        .padding(.horizontal)
         .onAppear {
             if mode == "Quick" {
                 rounds = 10
@@ -93,5 +102,5 @@ struct StartGameView: View {
     }
 }
 #Preview {
-    StartGameView(mode: "Infinity")
+    StartGameView(mode: "Quick")
 }
