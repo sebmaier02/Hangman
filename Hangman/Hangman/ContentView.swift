@@ -2,6 +2,9 @@ import SwiftUI
 import WebKit
 
 struct ContentView: View {
+    
+    @AppStorage("highscore") var highscore: Int = 0
+    
     var body: some View {
         
         NavigationView {
@@ -22,14 +25,23 @@ struct ContentView: View {
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
+                    .padding(.vertical, 60)
+                    .padding(.top, -140)
+                
+                
+                Text("Your Highscore: \(highscore)")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 20)
                     .padding(.vertical, 40)
                     .padding(.top, -100)
                 
                 NavigationLink(destination: StartGameView()) {
                     ButtonView(text: "Start Game")
                 }
-                
                 Spacer()
+                
             }
             .padding(.horizontal)
         }

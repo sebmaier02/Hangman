@@ -9,33 +9,33 @@ import SwiftUI
 
 struct StartGameView: View {
     @Environment(\.dismiss) var dismiss
-    
+    @AppStorage("highscore") var highscore: Int = 0
     var body: some View {
         VStack (alignment: .center) {
             
             Spacer()
             
-            Text("Rules")
+            Text("Modes")
                 .font(.largeTitle)
-                .padding(.bottom)
+                .padding(.bottom, 20)
             
-            Group {
-                Text("You will get a random word and you have to guess it.")
-                Text("You can enter one charater at the time an check if it is the word.")
-                Text("If correct the letter will apear in the word.")
-                Text("I fincorrect the \"Hangman\" will slowly appear")
-                Text("Once fully visible the game is over")
+            VStack {
+                Text("In this mode you will get a random english word.")
+                Text("By guessing the characters you will either get one step closer to the right answer, or one step closer to \"hangman\".")
+                Text("Now go on and reach for the stars!")
             }
+            .padding()
+            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 6)
             .font(.title2)
             .multilineTextAlignment(.center)
             
             Spacer()
             
-            Text("Highscore")
+            Text("Highscore: \(highscore)")
                 .font(.largeTitle)
                 .padding(.bottom)
             
-            Text("47")
+            Text("")
                 .font(.title2)
             
             Spacer()
