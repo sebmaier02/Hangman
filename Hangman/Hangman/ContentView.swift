@@ -25,7 +25,7 @@ struct ContentView: View {
                     .padding(.vertical, 40)
                     .padding(.top, -100)
                 
-                NavigationLink(destination: StartGameView(mode: "Start Game")) {
+                NavigationLink(destination: StartGameView()) {
                     ButtonView(text: "Start Game")
                 }
                 
