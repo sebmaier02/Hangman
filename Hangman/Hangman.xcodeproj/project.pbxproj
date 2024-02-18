@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80F3CE2B2B823C9200E51AF7 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */; };
+		80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2E2B823D3B00E51AF7 /* GameView.swift */; };
 		962494792B8238D800ABCF5E /* HangmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962494782B8238D800ABCF5E /* HangmanApp.swift */; };
 		9624947B2B8238D800ABCF5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624947A2B8238D800ABCF5E /* ContentView.swift */; };
 		9624947D2B8238DA00ABCF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9624947C2B8238DA00ABCF5E /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
+		80F3CE2E2B823D3B00E51AF7 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		962494752B8238D800ABCF5E /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		962494782B8238D800ABCF5E /* HangmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanApp.swift; sourceTree = "<group>"; };
 		9624947A2B8238D800ABCF5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 			children = (
 				962494782B8238D800ABCF5E /* HangmanApp.swift */,
 				9624947A2B8238D800ABCF5E /* ContentView.swift */,
+				80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */,
+				80F3CE2E2B823D3B00E51AF7 /* GameView.swift */,
 				9624947C2B8238DA00ABCF5E /* Assets.xcassets */,
 				9624947E2B8238DA00ABCF5E /* Preview Content */,
 			);
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9624947B2B8238D800ABCF5E /* ContentView.swift in Sources */,
+				80F3CE2B2B823C9200E51AF7 /* StartGameView.swift in Sources */,
+				80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */,
 				962494792B8238D800ABCF5E /* HangmanApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
