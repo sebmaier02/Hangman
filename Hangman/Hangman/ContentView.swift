@@ -8,32 +8,25 @@ struct ContentView: View {
             VStack(spacing: 30) {
                 Spacer()
                 
-                Image("logogood")
+                Image("Hangman_image")
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .aspectRatio(contentMode: .fit)
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .padding(.top, -100)
                     
+                Spacer()
                 
-                Text("Welcome to Guess the Song!")
+                Text("Welcome to Hangman!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 40)
                     .padding(.top, -100)
                 
-                NavigationLink(destination: StartGameView(mode: "Quick")) {
-                    ButtonView(text: "Quick")
-                }
-                
-                NavigationLink(destination: StartGameView(mode: "Medium")) {
-                    ButtonView(text: "Medium")
-                }
-                
-                NavigationLink(destination: StartGameView(mode: "Infinity")) {
-                    ButtonView(text: "Infinity")
+                NavigationLink(destination: StartGameView(mode: "Start Game")) {
+                    ButtonView(text: "Start Game")
                 }
                 
                 Spacer()
@@ -58,7 +51,7 @@ private struct ButtonView: View {
             .foregroundColor(.white)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color.blue)
+            .background(Color.black)
             .cornerRadius(20)
             .shadow(color: Color.blue.opacity(0.5), radius: 10, x: 0, y: 5)
     }
