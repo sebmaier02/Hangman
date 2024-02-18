@@ -19,6 +19,10 @@ struct GameView: View {
     @State private var emptyWordCharArray: [Character]
     @Environment(\.dismiss) var dismiss
     @State var gameover: Bool = false
+    @AppStorage("highscore") var highscore: Int = 0
+    @State var score: Int = 0
+    @State var reloadView = false
+    @State var characterCount: Int = 0
     
     init() {
         let uppercasedWord = word.uppercased()
@@ -28,16 +32,19 @@ struct GameView: View {
     
     var body: some View {
         VStack (alignment: .center){
-            Image(pictures[errors])
-                .resizable()
-                .scaledToFit()
-                .frame(height: 350)
-                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 10)
-                .cornerRadius(20)
+            
+            ZStack {
+                Image(pictures[errors])
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 350)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 10)
+                    .cornerRadius(20)
+            }
             
             Spacer()
             
-            displayLines(characterCount: emptyWordCharArray.count, wordCharArray: $emptyWordCharArray)
+            displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray)
             Spacer()
             HStack(alignment: .center) {
                 ForEach(alphabet1, id: \.self) { letter in
@@ -62,33 +69,46 @@ struct GameView: View {
         }
         .padding()
         .alert("Gameover", isPresented: $gameover) {
-            NavigationLink(destination: EndGameView()) {
-                Button {
-                    
-                } label: {
-                    Text("OK")
+            Button {
+                if score > highscore {
+                    highscore = score
                 }
+                dismiss()
+            } label: {
+                Text("OK")
             }
         } message: {
+            Text("Score: \(score)")
             Text("Better luck next time :)")
         }
+        .onChange(of: emptyWordCharArray) { _ in
+            if emptyWordCharArray == wordCharArray {
+                errors = 0
+                wordCharArray = Array("HELLO")
+                characterCount = wordCharArray.count
+                emptyWordCharArray = Array(repeating: " ", count: characterCount)
+                reloadView.toggle()
+            }
+        }
+        .id(reloadView)
     }
     
     func displayLetter(character: Character) -> some View {
-        Hangman.displayLetter(errors: $errors, character: character, wordCharArray: wordCharArray, emptyWordCharArray: $emptyWordCharArray, gameover: $gameover)
+        Hangman.displayLetter(errors: $errors, character: character, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, gameover: $gameover, score: $score)
     }
 }
 
 struct displayLetter: View {
     @Binding var errors: Int
     var character: Character
-    var wordCharArray: [Character]
-    @State var taped: Bool = false
+    @Binding var wordCharArray: [Character]
+    @State var tapped: Bool = false
     @Binding var emptyWordCharArray: [Character]
     @State var op: Double = 1.0
     @State var correct: Bool = false
     @Environment(\.dismiss) var dismiss
     @Binding var gameover: Bool
+    @Binding var score: Int
     
     var body: some View {
         Color.gray
@@ -99,11 +119,12 @@ struct displayLetter: View {
                 Text(String(character))
             }
             .onTapGesture {
-                if !taped {
+                if !tapped {
                     for index in wordCharArray.indices {
                         if character == wordCharArray[index] {
                             emptyWordCharArray[index] = character
                             correct = true
+                            score += 10
                         }
                     }
                     if !correct {
@@ -116,14 +137,14 @@ struct displayLetter: View {
                     }
                     
                     op = 0.2
-                    taped.toggle()
+                    tapped.toggle()
                 }
             }
     }
 }
 
 struct displayLines: View {
-    var characterCount: Int
+    @Binding var characterCount: Int
     @Binding var wordCharArray: [Character]
     
     var body: some View {
