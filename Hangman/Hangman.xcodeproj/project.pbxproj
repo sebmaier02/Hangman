@@ -13,6 +13,7 @@
 		9624947B2B8238D800ABCF5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624947A2B8238D800ABCF5E /* ContentView.swift */; };
 		9624947D2B8238DA00ABCF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9624947C2B8238DA00ABCF5E /* Assets.xcassets */; };
 		962494802B8238DA00ABCF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9624947F2B8238DA00ABCF5E /* Preview Assets.xcassets */; };
+		962494872B827F9500ABCF5E /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962494862B827F9500ABCF5E /* EndGameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		9624947A2B8238D800ABCF5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9624947C2B8238DA00ABCF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9624947F2B8238DA00ABCF5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		962494862B827F9500ABCF5E /* EndGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				9624947A2B8238D800ABCF5E /* ContentView.swift */,
 				80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */,
 				80F3CE2E2B823D3B00E51AF7 /* GameView.swift */,
+				962494862B827F9500ABCF5E /* EndGameView.swift */,
 				9624947C2B8238DA00ABCF5E /* Assets.xcassets */,
 				9624947E2B8238DA00ABCF5E /* Preview Content */,
 			);
@@ -147,6 +150,7 @@
 				80F3CE2B2B823C9200E51AF7 /* StartGameView.swift in Sources */,
 				80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */,
 				962494792B8238D800ABCF5E /* HangmanApp.swift in Sources */,
+				962494872B827F9500ABCF5E /* EndGameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

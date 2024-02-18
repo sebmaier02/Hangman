@@ -12,50 +12,127 @@ struct GameView: View {
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
-    let chunksize = 7
+    var word: String = "GayTobi"
+    @State var errors: Int = 0
+    let pictures = ["hangman00", "hangman01", "hangman02","hangman03", "hangman04", "hangman05", "hangman06", "hangman07", "hangman08", "hangman09", "hangman10"]
+    @State private var wordCharArray: [Character]
+    @State private var emptyWordCharArray: [Character]
+    @Environment(\.dismiss) var dismiss
+    @State var gameover: Bool = false
+    
+    init() {
+        let uppercasedWord = word.uppercased()
+        _wordCharArray = State(initialValue: Array(uppercasedWord))
+        _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
+    }
+    
     var body: some View {
         VStack (alignment: .center){
+            Image(pictures[errors])
+                .resizable()
+                .scaledToFit()
+                .frame(height: 350)
+                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 10)
+                .cornerRadius(20)
+            
             Spacer()
-            displayLines(characterCount: 10)
+            
+            displayLines(characterCount: emptyWordCharArray.count, wordCharArray: $emptyWordCharArray)
             Spacer()
-            displayLetters(alphabet: alphabet1)
-            displayLetters(alphabet: alphabet2)
-            displayLetters(alphabet: alphabet3)
-            displayLetters(alphabet: alphabet4)
+            HStack(alignment: .center) {
+                ForEach(alphabet1, id: \.self) { letter in
+                    displayLetter(character: letter)
+                }
+            }
+            HStack(alignment: .center) {
+                ForEach(alphabet2, id: \.self) { letter in
+                    displayLetter(character: letter)
+                }
+            }
+            HStack(alignment: .center) {
+                ForEach(alphabet3, id: \.self) { letter in
+                    displayLetter(character: letter)
+                }
+            }
+            HStack(alignment: .center) {
+                ForEach(alphabet4, id: \.self) { letter in
+                    displayLetter(character: letter)
+                }
+            }
         }
         .padding()
+        .alert("Gameover", isPresented: $gameover) {
+            NavigationLink(destination: EndGameView()) {
+                Button {
+                    
+                } label: {
+                    Text("OK")
+                }
+            }
+        } message: {
+            Text("Better luck next time :)")
+        }
+    }
+    
+    func displayLetter(character: Character) -> some View {
+        Hangman.displayLetter(errors: $errors, character: character, wordCharArray: wordCharArray, emptyWordCharArray: $emptyWordCharArray, gameover: $gameover)
     }
 }
 
-struct displayLetters: View {
-    var alphabet: [Character]
+struct displayLetter: View {
+    @Binding var errors: Int
+    var character: Character
+    var wordCharArray: [Character]
+    @State var taped: Bool = false
+    @Binding var emptyWordCharArray: [Character]
+    @State var op: Double = 1.0
+    @State var correct: Bool = false
+    @Environment(\.dismiss) var dismiss
+    @Binding var gameover: Bool
+    
     var body: some View {
-        HStack {
-            ForEach(alphabet, id: \.self) { letter in
-                Color.gray
-                    .frame(width: 30, height: 40)
-                    .cornerRadius(5)
-                    .overlay() {
-                        Text(String(letter))
-                    }
-                    .onTapGesture {
-                        print(String(letter))
-                    }
+        Color.gray
+            .opacity(op)
+            .frame(width: 40, height: 50)
+            .cornerRadius(5)
+            .overlay() {
+                Text(String(character))
             }
-        }
+            .onTapGesture {
+                if !taped {
+                    for index in wordCharArray.indices {
+                        if character == wordCharArray[index] {
+                            emptyWordCharArray[index] = character
+                            correct = true
+                        }
+                    }
+                    if !correct {
+                        errors = errors + 1
+                    }
+                    correct = false
+                    
+                    if errors == 10 {
+                        gameover.toggle()
+                    }
+                    
+                    op = 0.2
+                    taped.toggle()
+                }
+            }
     }
 }
 
 struct displayLines: View {
     var characterCount: Int
-    let stringsArray = ["strich1", "strich2", "strich3", "strich4", "strich5", "strich6"]
+    @Binding var wordCharArray: [Character]
+    
     var body: some View {
         HStack {
-            ForEach(0..<characterCount) {_ in
-                let randomNumber = Int.random(in: 0..<6)
+            ForEach(0..<characterCount) { index in
                 VStack {
-                    Text("q")
-                    Image(stringsArray[randomNumber])
+                    Text(String(wordCharArray[index]))
+                        .padding(.bottom, -18)
+                    Image("strich3")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 40, maxHeight: 20)

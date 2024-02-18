@@ -49,9 +49,9 @@ struct StartGameView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                    .background(Color.black)
                     .cornerRadius(20)
-                    .shadow(color: Color.blue.opacity(0.5), radius: 10, x: 0, y: 5)
+                    .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 5)
             }
             
             Spacer()
