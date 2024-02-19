@@ -8,42 +8,41 @@ struct ContentView: View {
     var body: some View {
         
         NavigationStack {
-            VStack(spacing: 30) {
-                Spacer()
-                
-                Image("Hangman_image")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .padding(.top, -100)
-                    
-                Spacer()
-                
-                Text("Welcome to Hangman!")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 60)
-                    .padding(.top, -140)
-                
-                
-                Text("Your Highscore: \(highscore)")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 40)
-                    .padding(.top, -100)
-                
-                NavigationLink(destination: StartGameView()) {
-                    ButtonView(text: "Start Game")
+            VStack {
+                ZStack{
+                    Image("Hangman_image")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding(.bottom, 300)
+                    VStack{
+                        
+                        Text("Welcome to Hangman!")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 450)
+                        
+                        Text("Your Highscore: \(highscore)")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .padding(.top, 10)
+                            
+                        
+                        NavigationLink(destination: StartGameView()) {
+                            ButtonView(text: "Start Game")
+                                .padding(.top, 70)
+                        }
+                    }
+                    .padding(.horizontal)
                 }
+                
+               
                 Spacer()
                 
             }
-            .padding(.horizontal)
         }
     }
 }

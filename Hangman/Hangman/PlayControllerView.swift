@@ -19,7 +19,7 @@ struct PlayControllerView: View{
                     GameView(word: word, state: state)
                 }
                 else {
-                    NextLevelView(state: state)
+                    NextLevelView(state: state, word: word)
                 }
             }
             .onReceive(state.$end) { end in
@@ -29,6 +29,9 @@ struct PlayControllerView: View{
             }
         } else {
             Text("Fetching new word")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
                 .onAppear {
                     fetchWord()
                 }

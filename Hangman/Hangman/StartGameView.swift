@@ -15,7 +15,7 @@ struct StartGameView: View {
             
             Spacer()
             
-            Text("Modes")
+            Text("Rules")
                 .font(.largeTitle)
                 .padding(.bottom, 20)
             
@@ -25,8 +25,10 @@ struct StartGameView: View {
                 Text("Now go on and reach for the stars!")
             }
             .padding()
-            .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 6)
+            .background(Color.gray.opacity(0.3))
+            .cornerRadius(20)
             .font(.title2)
+            .foregroundColor(.black)
             .multilineTextAlignment(.center)
             
             Spacer()
