@@ -146,11 +146,11 @@ struct displayLines: View {
             ForEach(0..<characterCount) { index in
                 VStack {
                     Text(String(wordCharArray[index]))
-                        .padding(.bottom, -18)
                     Image("strich3")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 40, maxHeight: 20)
+                        .padding(.bottom, 18)
                 }
             }
         }

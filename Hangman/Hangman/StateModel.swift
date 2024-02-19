@@ -13,4 +13,5 @@ class StateModel: ObservableObject {
     @Published var gameover: Bool = false
     @Published var end: Bool = false
     @Published var fetched: Bool = false
+    @Published var error: Bool = false
 }
