@@ -1,26 +1,24 @@
-//
-//  GameView.swift
-//  Hangman
-//
-//  Created by Tobias Pummer on 18.02.24.
-//
-
 import SwiftUI
 
 struct GameView: View {
-    @ObservedObject var state: StateModel
+    @ObservedObject var state: StateModel // ObservedObject to manage state
+    
+    @AppStorage("highscore") var highscore: Int = 0 // AppStorage for storing high score
+    
+    @State var errors: Int = 0 // State variable to track errors
+    @State var wordCharArray: [Character] // State variable to store characters of the word
+    @State var emptyWordCharArray: [Character] // State variable to store guessed characters
+    @State var characterCount: Int // State variable to store word length
+    @State var completed: Bool = false // State variable to track completion
+    
+    // Arrays to hold alphabets and hangman images
     let alphabet1 = Array("ABCDEF")
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
-    @State var errors: Int = 0
     let pictures = ["hangman00", "hangman01", "hangman02","hangman03", "hangman04", "hangman05", "hangman06", "hangman07", "hangman08", "hangman09", "hangman10"]
-    @State var wordCharArray: [Character]
-    @State var emptyWordCharArray: [Character]
-    @AppStorage("highscore") var highscore: Int = 0
-    @State var characterCount: Int
-    @State var completed: Bool = false
     
+    // Constructor to initialize the game view
     init(word: String, state: StateModel) {
         let uppercasedWord = word.uppercased()
         _wordCharArray = State(initialValue: Array(uppercasedWord))
@@ -32,101 +30,113 @@ struct GameView: View {
     var body: some View {
         VStack (alignment: .center){
             ZStack {
-                Image(pictures[errors])
+                Image(pictures[errors]) // Display hangman image based on errors
                     .resizable()
                     .scaledToFit()
                     .frame(height: 350)
-                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 10)
+                    .border(Color.black, width: 10)
                     .cornerRadius(20)
             }
             
             Spacer()
             
-            displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray)
+            displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray) // Display lines for each character
             
             Spacer()
             
+            // Display alphabets in rows
             HStack(alignment: .center) {
                 ForEach(alphabet1, id: \.self) { letter in
-                    displayLetter(character: letter)
+                    displayLetter(character: letter) // Display each alphabet
                 }
             }
             
             HStack(alignment: .center) {
                 ForEach(alphabet2, id: \.self) { letter in
-                    displayLetter(character: letter)
+                    displayLetter(character: letter) // Display each alphabet
                 }
             }
             
             HStack(alignment: .center) {
                 ForEach(alphabet3, id: \.self) { letter in
-                    displayLetter(character: letter)
+                    displayLetter(character: letter) // Display each alphabet
                 }
             }
             
             HStack(alignment: .center) {
                 ForEach(alphabet4, id: \.self) { letter in
-                    displayLetter(character: letter)
+                    displayLetter(character: letter) // Display each alphabet
                 }
             }
         }
         .padding()
         .onChange(of: emptyWordCharArray) { _ in
+            // Check if the word is completed
             if emptyWordCharArray == wordCharArray {
                 completed.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    state.playing.toggle()
+                    state.playing.toggle() // Toggle playing state
                 }
             }
         }
     }
     
+    // Function to display each letter
     func displayLetter(character: Character) -> some View {
-        Hangman.displayLetter(state: state,errors: $errors, character: character, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, completed: $completed)
+        // Use the displayLetter view
+        Hangman.displayLetter(state: state, errors: $errors, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, character: character, completed: $completed)
     }
 }
 
+// View to display a letter
 struct displayLetter: View {
     @ObservedObject var state: StateModel
+    
+    @Environment(\.dismiss) var dismiss
+    
     @Binding var errors: Int
-    var character: Character
     @Binding var wordCharArray: [Character]
-    @State var tapped: Bool = false
     @Binding var emptyWordCharArray: [Character]
+    
+    @State var tapped: Bool = false
     @State var op: Double = 1.0
     @State var correct: Bool = false
-    @Environment(\.dismiss) var dismiss
+    
+    var character: Character
+    
     @Binding var completed: Bool
     
     var body: some View {
+        // Display a gray box representing a letter
         Color.gray
             .opacity(op)
             .frame(width: 40, height: 50)
             .cornerRadius(5)
             .overlay() {
-                Text(String(character))
+                Text(String(character)) // Display the character inside the box
             }
             .onTapGesture {
                 if !completed {
                     if !tapped {
                         for index in wordCharArray.indices {
                             if character == wordCharArray[index] {
-                                emptyWordCharArray[index] = character
+                                emptyWordCharArray[index] = character // Fill in the guessed character
                                 correct = true
-                                state.score += 10
+                                state.score += 10 // Increase score
                             }
                         }
                         if !correct {
-                            errors = errors + 1
+                            errors = errors + 1 // Increment errors if the character is not in the word
                         }
                         correct = false
                         
                         if errors == 10 {
-                            state.gameover.toggle()
-                            completed.toggle()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                state.gameover.toggle() // Toggle gameover state if 10 errors reached
+                                completed.toggle()
                                 state.playing.toggle()
                             }
+                            
                         }
                         
                         op = 0.2
@@ -137,6 +147,7 @@ struct displayLetter: View {
     }
 }
 
+// View to display lines representing each character of the word
 struct displayLines: View {
     @Binding var characterCount: Int
     @Binding var wordCharArray: [Character]
@@ -145,14 +156,20 @@ struct displayLines: View {
         HStack {
             ForEach(0..<characterCount) { index in
                 VStack {
-                    Text(String(wordCharArray[index]))
-                    Image("strich3")
+                    Text(String(wordCharArray[index])) // Display each character
+                        .padding(.bottom, -18)
+                    
+                    Image("strich3") // Display a line beneath each character
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 40, maxHeight: 20)
-                        .padding(.bottom, 18)
                 }
             }
         }
     }
+}
+
+// Preview for GameView
+#Preview {
+    GameView(word: "SWIFTUI", state: StateModel())
 }

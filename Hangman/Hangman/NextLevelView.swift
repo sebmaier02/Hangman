@@ -1,38 +1,33 @@
-//
-//  EndGame.swift
-//  Hangman
-//
-//  Created by Sebastian Maier on 18.02.24.
-//
-
 import SwiftUI
 
 struct NextLevelView: View {
-    @ObservedObject var state: StateModel
-    @AppStorage("highscore") var highscore: Int = 0
-    var word: String
+    @ObservedObject var state: StateModel // ObservedObject to manage state
+    
+    @AppStorage("highscore") var highscore: Int = 0 // AppStorage for storing high score
+    
+    var word: String // The word to be displayed
+    
     var body: some View {
         VStack {
-            if !state.gameover {
+            if !state.gameover { // If game is not over
+                // Display congratulations and prompt to continue
                 Text("Well done!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, -12)
-        
-                Text("Lets keep going!")
+                
+                Text("Let's keep going!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 60)
                 
-                Text("Score: \(state.score)")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
+                Text("Score: \(state.score)") // Display current score
                 
+                // Button to proceed to the next level
                 Text("Next one")
                     .font(.title)
                     .fontWeight(.semibold)
@@ -43,12 +38,18 @@ struct NextLevelView: View {
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 5)
                     .onTapGesture {
-                        state.fetched.toggle()
-                        state.playing.toggle()
+                        state.fetched.toggle() // Toggle fetched state
+                        state.playing.toggle() // Toggle playing state
                     }
-            } else {
+            } else { // If game is over
+                // Display the word and a message for the end of the game
+                Text("The word was:")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
                 
-                Text("The word was: " + word)
+                Text(word.uppercased()) // Display the word
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
@@ -60,7 +61,7 @@ struct NextLevelView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
-        
+                
                 Text("Maybe next time ;)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -68,11 +69,9 @@ struct NextLevelView: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 60)
                 
-                Text("Final score: \(state.score)")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
+                Text("Final score: \(state.score)") // Display final score
                 
+                // Button to end the game
                 Text("End game")
                     .font(.title)
                     .fontWeight(.semibold)
@@ -83,10 +82,10 @@ struct NextLevelView: View {
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 5)
                     .onTapGesture {
-                        if state.score > highscore {
-                            highscore = state.score
+                        if state.score > highscore { // If current score is higher than highscore
+                            highscore = state.score // Update highscore
                         }
-                        state.end.toggle()
+                        state.end.toggle() // Toggle end state
                     }
             }
         }
