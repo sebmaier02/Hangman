@@ -13,6 +13,20 @@ struct NextLevelView: View {
     var body: some View {
         VStack {
             if !state.gameover {
+                Text("Well done!")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, -12)
+        
+                Text("Lets keep going!")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 60)
+                
                 Text("Score: \(state.score)")
                 Text("Next one")
                     .font(.title)
@@ -24,9 +38,24 @@ struct NextLevelView: View {
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 5)
                     .onTapGesture {
+                        state.fetched.toggle()
                         state.playing.toggle()
                     }
             } else {
+                Text("Too bad.")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, -12)
+        
+                Text("Maybe next time ;)")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 60)
+                
                 Text("Final score: \(state.score)")
                 Text("End game")
                     .font(.title)
