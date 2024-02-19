@@ -52,11 +52,11 @@ struct PlayControllerView: View{
                     // Update the word variable with the extracted word
                     self.word = word
                     print(word)
+                    state.fetched.toggle()
                 } else {
                     print("Failed to extract word from JSON")
                 }
             } catch {
-                state.fetched.toggle()
                 print("Error decoding JSON: \(error.localizedDescription)")
             }
         }
