@@ -8,8 +8,9 @@
 import Foundation
 
 class StateModel: ObservableObject {
-    @Published var playing = true
-    @Published var score = 0
-    @Published var gameover = false
-    @Published var end = false
+    @Published var playing: Bool = true
+    @Published var score: Int = 0
+    @Published var gameover: Bool = false
+    @Published var end: Bool = false
+    @Published var fetched: Bool = false
 }
