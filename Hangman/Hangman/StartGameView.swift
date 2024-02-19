@@ -41,7 +41,7 @@ struct StartGameView: View {
             Spacer()
             
             NavigationLink{
-                GameView()
+                PlayControllerView()
             } label: {
                 Text("Start")
                     .font(.title)

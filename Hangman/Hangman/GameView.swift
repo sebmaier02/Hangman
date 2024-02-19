@@ -8,31 +8,29 @@
 import SwiftUI
 
 struct GameView: View {
+    @ObservedObject var state: StateModel
     let alphabet1 = Array("ABCDEF")
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
-    var word: String = "GayTobi"
     @State var errors: Int = 0
     let pictures = ["hangman00", "hangman01", "hangman02","hangman03", "hangman04", "hangman05", "hangman06", "hangman07", "hangman08", "hangman09", "hangman10"]
-    @State private var wordCharArray: [Character]
-    @State private var emptyWordCharArray: [Character]
-    @Environment(\.dismiss) var dismiss
-    @State var gameover: Bool = false
+    @State var wordCharArray: [Character]
+    @State var emptyWordCharArray: [Character]
     @AppStorage("highscore") var highscore: Int = 0
-    @State var score: Int = 0
-    @State var reloadView = false
-    @State var characterCount: Int = 0
+    @State var characterCount: Int
+    @State var completed: Bool = false
     
-    init() {
+    init(word: String, state: StateModel) {
         let uppercasedWord = word.uppercased()
         _wordCharArray = State(initialValue: Array(uppercasedWord))
         _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
+        _characterCount = State(initialValue: uppercasedWord.count)
+        self.state = state
     }
     
     var body: some View {
         VStack (alignment: .center){
-            
             ZStack {
                 Image(pictures[errors])
                     .resizable()
@@ -45,22 +43,27 @@ struct GameView: View {
             Spacer()
             
             displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray)
+            
             Spacer()
+            
             HStack(alignment: .center) {
                 ForEach(alphabet1, id: \.self) { letter in
                     displayLetter(character: letter)
                 }
             }
+            
             HStack(alignment: .center) {
                 ForEach(alphabet2, id: \.self) { letter in
                     displayLetter(character: letter)
                 }
             }
+            
             HStack(alignment: .center) {
                 ForEach(alphabet3, id: \.self) { letter in
                     displayLetter(character: letter)
                 }
             }
+            
             HStack(alignment: .center) {
                 ForEach(alphabet4, id: \.self) { letter in
                     displayLetter(character: letter)
@@ -68,37 +71,23 @@ struct GameView: View {
             }
         }
         .padding()
-        .alert("Gameover", isPresented: $gameover) {
-            Button {
-                if score > highscore {
-                    highscore = score
-                }
-                dismiss()
-            } label: {
-                Text("OK")
-            }
-        } message: {
-            Text("Score: \(score)")
-            Text("Better luck next time :)")
-        }
         .onChange(of: emptyWordCharArray) { _ in
             if emptyWordCharArray == wordCharArray {
-                errors = 0
-                wordCharArray = Array("HELLO")
-                characterCount = wordCharArray.count
-                emptyWordCharArray = Array(repeating: " ", count: characterCount)
-                reloadView.toggle()
+                completed.toggle()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    state.playing.toggle()
+                }
             }
         }
-        .id(reloadView)
     }
     
     func displayLetter(character: Character) -> some View {
-        Hangman.displayLetter(errors: $errors, character: character, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, gameover: $gameover, score: $score)
+        Hangman.displayLetter(state: state,errors: $errors, character: character, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, completed: $completed)
     }
 }
 
 struct displayLetter: View {
+    @ObservedObject var state: StateModel
     @Binding var errors: Int
     var character: Character
     @Binding var wordCharArray: [Character]
@@ -107,8 +96,7 @@ struct displayLetter: View {
     @State var op: Double = 1.0
     @State var correct: Bool = false
     @Environment(\.dismiss) var dismiss
-    @Binding var gameover: Bool
-    @Binding var score: Int
+    @Binding var completed: Bool
     
     var body: some View {
         Color.gray
@@ -119,25 +107,31 @@ struct displayLetter: View {
                 Text(String(character))
             }
             .onTapGesture {
-                if !tapped {
-                    for index in wordCharArray.indices {
-                        if character == wordCharArray[index] {
-                            emptyWordCharArray[index] = character
-                            correct = true
-                            score += 10
+                if !completed {
+                    if !tapped {
+                        for index in wordCharArray.indices {
+                            if character == wordCharArray[index] {
+                                emptyWordCharArray[index] = character
+                                correct = true
+                                state.score += 10
+                            }
                         }
+                        if !correct {
+                            errors = errors + 1
+                        }
+                        correct = false
+                        
+                        if errors == 10 {
+                            state.gameover.toggle()
+                            completed.toggle()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                state.playing.toggle()
+                            }
+                        }
+                        
+                        op = 0.2
+                        tapped.toggle()
                     }
-                    if !correct {
-                        errors = errors + 1
-                    }
-                    correct = false
-                    
-                    if errors == 10 {
-                        gameover.toggle()
-                    }
-                    
-                    op = 0.2
-                    tapped.toggle()
                 }
             }
     }
@@ -161,8 +155,4 @@ struct displayLines: View {
             }
         }
     }
-}
-
-#Preview {
-    GameView()
 }

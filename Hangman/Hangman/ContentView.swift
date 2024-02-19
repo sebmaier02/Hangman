@@ -7,7 +7,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 30) {
                 Spacer()
                 
