@@ -50,9 +50,11 @@ struct PlayControllerView: View{
                 // Check if the JSON has a "word" key and extract its value
                 if let word = json?["word"] as? String {
                     // Update the word variable with the extracted word
-                    self.word = word
-                    print(word)
-                    state.fetched.toggle()
+                    DispatchQueue.main.async { // Perform UI updates on the main thread
+                        self.word = word
+                        self.state.fetched.toggle()
+                    }
+                    print(self.word)
                 } else {
                     print("Failed to extract word from JSON")
                 }
