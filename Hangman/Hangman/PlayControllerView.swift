@@ -96,8 +96,8 @@ struct PlayControllerView: View {
                     // Update the word variable with the extracted word
                     DispatchQueue.main.async { // Perform UI updates on the main thread
                         word = jsonWord
-                        state.fetched = true // Set fetched state to true
                         print(word)
+                        state.fetched = true // Set fetched state to true
                     }
                 } else {
                     print("Failed to extract word from JSON")

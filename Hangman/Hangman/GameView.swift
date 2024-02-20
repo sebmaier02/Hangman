@@ -125,9 +125,11 @@ struct displayLetter: View {
                                 state.score += 10 // Increase score
                             }
                         }
+                        
                         if !correct {
                             errors = errors + 1 // Increment errors if the character is not in the word
                         }
+                        
                         correct = false
                         
                         if errors == 10 {
@@ -167,9 +169,4 @@ struct displayLines: View {
             }
         }
     }
-}
-
-// Preview for GameView
-#Preview {
-    GameView(word: "SWIFTUI", state: StateModel())
 }
