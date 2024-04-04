@@ -13,16 +13,18 @@ struct PlayControllerView: View {
     var body: some View {
         if !state.error { // Check if there is no error
             if state.fetched { // Check if the word is fetched
-                VStack { 
+                VStack {
                     // Display GameView if playing
                     if state.playing {
                         GameView(word: word, state: state) // Display GameView
                     }
                     // Display NextLevelView if not playing
                     else {
+                        
                         NextLevelView(state: state, word: word) // Display NextLevelView
                             .transition(.push(from: .trailing)) // Slide in from the right
                             .animation(.easeInOut) // Apply animation
+                        
                     }
                 }
                 .transition(.push(from: .trailing)) // Slide in from the right

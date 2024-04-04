@@ -127,18 +127,16 @@ struct displayLetter: View {
                         }
                         
                         if !correct {
-                            errors = errors + 1 // Increment errors if the character is not in the word
+                            errors += 1 // Increment errors if the character is not in the word
                         }
                         
                         correct = false
                         
                         if errors == 10 {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                state.gameover.toggle() // Toggle gameover state if 10 errors reached
-                                completed.toggle()
-                                state.playing.toggle()
-                            }
                             
+                            state.gameover.toggle() // Toggle gameover state if 10 errors reached
+                            completed.toggle()
+                            state.playing.toggle()
                         }
                         
                         op = 0.2
