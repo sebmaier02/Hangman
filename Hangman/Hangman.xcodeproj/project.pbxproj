@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		809538C32BC4428000990887 /* Miology.otf in Resources */ = {isa = PBXBuildFile; fileRef = 809538C22BC4428000990887 /* Miology.otf */; };
 		80F3CE2B2B823C9200E51AF7 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */; };
 		80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2E2B823D3B00E51AF7 /* GameView.swift */; };
 		961AD04C2B837854003AF2AE /* PlayControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AD04B2B837854003AF2AE /* PlayControllerView.swift */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		809538C22BC4428000990887 /* Miology.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Miology.otf; sourceTree = "<group>"; };
+		809538C42BC4446900990887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
 		80F3CE2E2B823D3B00E51AF7 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		961AD04B2B837854003AF2AE /* PlayControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayControllerView.swift; sourceTree = "<group>"; };
@@ -42,6 +45,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		809538C02BC4425D00990887 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				809538C12BC4426A00990887 /* Fonts */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		809538C12BC4426A00990887 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				809538C22BC4428000990887 /* Miology.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		9624946C2B8238D800ABCF5E = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +80,8 @@
 		962494772B8238D800ABCF5E /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				809538C42BC4446900990887 /* Info.plist */,
+				809538C02BC4425D00990887 /* Ressources */,
 				962494782B8238D800ABCF5E /* HangmanApp.swift */,
 				9624947A2B8238D800ABCF5E /* ContentView.swift */,
 				80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */,
@@ -142,6 +163,7 @@
 			files = (
 				962494802B8238DA00ABCF5E /* Preview Assets.xcassets in Resources */,
 				9624947D2B8238DA00ABCF5E /* Assets.xcassets in Resources */,
+				809538C32BC4428000990887 /* Miology.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +317,8 @@
 				DEVELOPMENT_TEAM = 3G8G647753;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hangman/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -324,6 +348,8 @@
 				DEVELOPMENT_TEAM = 3G8G647753;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hangman/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

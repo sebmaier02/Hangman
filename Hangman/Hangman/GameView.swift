@@ -114,6 +114,7 @@ struct displayLetter: View {
             .cornerRadius(5)
             .overlay() {
                 Text(String(character)) // Display the character inside the box
+                    .font(Font.custom("Miology", size: 24))
             }
             .onTapGesture {
                 if !completed {
@@ -158,6 +159,7 @@ struct displayLines: View {
                 VStack {
                     Text(String(wordCharArray[index])) // Display each character
                         .padding(.bottom, -18)
+                        .font(Font.custom("Miology", size: 24))
                     
                     Image("strich3") // Display a line beneath each character
                         .resizable()
