@@ -17,6 +17,8 @@
 		9624947D2B8238DA00ABCF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9624947C2B8238DA00ABCF5E /* Assets.xcassets */; };
 		962494802B8238DA00ABCF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9624947F2B8238DA00ABCF5E /* Preview Assets.xcassets */; };
 		962494872B827F9500ABCF5E /* NextLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962494862B827F9500ABCF5E /* NextLevelView.swift */; };
+		967FA45D2BC82EC700A70BA9 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = 967FA45C2BC82EC700A70BA9 /* SVGKit */; };
+		967FA45F2BC82EC700A70BA9 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 967FA45E2BC82EC700A70BA9 /* SVGKitSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				967FA45F2BC82EC700A70BA9 /* SVGKitSwift in Frameworks */,
+				967FA45D2BC82EC700A70BA9 /* SVGKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +123,10 @@
 			dependencies = (
 			);
 			name = Hangman;
+			packageProductDependencies = (
+				967FA45C2BC82EC700A70BA9 /* SVGKit */,
+				967FA45E2BC82EC700A70BA9 /* SVGKitSwift */,
+			);
 			productName = Hangman;
 			productReference = 962494752B8238D800ABCF5E /* Hangman.app */;
 			productType = "com.apple.product-type.application";
@@ -147,6 +155,9 @@
 				Base,
 			);
 			mainGroup = 9624946C2B8238D800ABCF5E;
+			packageReferences = (
+				967FA45B2BC82EC700A70BA9 /* XCRemoteSwiftPackageReference "SVGKit" */,
+			);
 			productRefGroup = 962494762B8238D800ABCF5E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -390,6 +401,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		967FA45B2BC82EC700A70BA9 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		967FA45C2BC82EC700A70BA9 /* SVGKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 967FA45B2BC82EC700A70BA9 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKit;
+		};
+		967FA45E2BC82EC700A70BA9 /* SVGKitSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 967FA45B2BC82EC700A70BA9 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKitSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9624946D2B8238D800ABCF5E /* Project object */;
 }
