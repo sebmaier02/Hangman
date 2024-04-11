@@ -36,6 +36,8 @@ struct PlayControllerView: View {
                 }
             } else {
                 // Display while fetching new word
+                
+                // todo hangman animation
                 VStack {
                     Text("Fetching new word") // Display fetching message
                         .font(.largeTitle)

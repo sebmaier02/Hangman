@@ -34,7 +34,7 @@ struct GameView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 350)
-                    .border(Color.black, width: 10)
+                    .border(Color(UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1.0)), width: 10)
                     .cornerRadius(20)
             }
             
