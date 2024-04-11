@@ -16,7 +16,7 @@ struct GameView: View {
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
-    let pictures = ["hangman00", "hangman01", "hangman02","hangman03", "hangman04", "hangman05", "hangman06", "hangman07", "hangman08", "hangman09", "hangman10"]
+    let pictures = ["hangmansvg1", "hangmansvg2", "hangmansvg3","hangmansvg4", "hangmansvg5", "hangmansvg6", "hangmansvg7", "hangmansvg8", "hangmansvg9", "hangmansvg10", "hangmansvg11"]
     
     // Constructor to initialize the game view
     init(word: String, state: StateModel) {
@@ -30,12 +30,14 @@ struct GameView: View {
     var body: some View {
         VStack (alignment: .center){
             ZStack {
-                Image(pictures[errors]) // Display hangman image based on errors
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 350)
-                    .border(Color(UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1.0)), width: 10)
-                    .cornerRadius(20)
+                ForEach(0..<errors, id: \.self) { index in
+                    Image(pictures[index]) // Display hangman image based on errors
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200 ,height: 350)
+                        .border(Color(UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1.0)), width: 10)
+                        .cornerRadius(20)
+                }
             }
             
             Spacer()
@@ -133,7 +135,7 @@ struct displayLetter: View {
                         
                         correct = false
                         
-                        if errors == 10 {
+                        if errors == 11 {
                             
                             state.gameover.toggle() // Toggle gameover state if 10 errors reached
                             completed.toggle()

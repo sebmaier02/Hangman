@@ -1,5 +1,5 @@
 {
-  "originHash" : "cbaea0ec6551113a40b05af7787ae6a21f5206300e2d2f75d7be6379f32d246b",
+  "originHash" : "1e9c4558eb333f86a0b7ca049f5be05b37a11dc3cb4b90a12b2c508bd75c67d4",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
       "state" : {
-        "revision" : "43aaef65e0c665daadf848761d560e446d350d3d",
-        "version" : "1.22.4"
+        "revision" : "a0bc79961d7be727d258d33d5a6b2f1023270ba1",
+        "version" : "1.22.5"
       }
     },
     {
