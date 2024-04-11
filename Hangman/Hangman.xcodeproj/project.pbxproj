@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		809538C32BC4428000990887 /* Miology.otf in Resources */ = {isa = PBXBuildFile; fileRef = 809538C22BC4428000990887 /* Miology.otf */; };
+		809538C72BC838F700990887 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 809538C62BC838F700990887 /* FirebaseAnalytics */; };
+		809538C92BC838F700990887 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 809538C82BC838F700990887 /* FirebaseAuth */; };
+		809538CB2BC838F700990887 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 809538CA2BC838F700990887 /* FirebaseCrashlytics */; };
+		809538CD2BC838F700990887 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 809538CC2BC838F700990887 /* FirebaseFirestore */; };
+		809538CF2BC838F700990887 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 809538CE2BC838F700990887 /* FirebaseRemoteConfig */; };
 		80F3CE2B2B823C9200E51AF7 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */; };
 		80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2E2B823D3B00E51AF7 /* GameView.swift */; };
 		961AD04C2B837854003AF2AE /* PlayControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AD04B2B837854003AF2AE /* PlayControllerView.swift */; };
@@ -43,6 +48,11 @@
 			files = (
 				967FA45F2BC82EC700A70BA9 /* SVGKitSwift in Frameworks */,
 				967FA45D2BC82EC700A70BA9 /* SVGKit in Frameworks */,
+				809538CB2BC838F700990887 /* FirebaseCrashlytics in Frameworks */,
+				809538CF2BC838F700990887 /* FirebaseRemoteConfig in Frameworks */,
+				809538C72BC838F700990887 /* FirebaseAnalytics in Frameworks */,
+				809538C92BC838F700990887 /* FirebaseAuth in Frameworks */,
+				809538CD2BC838F700990887 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +136,11 @@
 			packageProductDependencies = (
 				967FA45C2BC82EC700A70BA9 /* SVGKit */,
 				967FA45E2BC82EC700A70BA9 /* SVGKitSwift */,
+				809538C62BC838F700990887 /* FirebaseAnalytics */,
+				809538C82BC838F700990887 /* FirebaseAuth */,
+				809538CA2BC838F700990887 /* FirebaseCrashlytics */,
+				809538CC2BC838F700990887 /* FirebaseFirestore */,
+				809538CE2BC838F700990887 /* FirebaseRemoteConfig */,
 			);
 			productName = Hangman;
 			productReference = 962494752B8238D800ABCF5E /* Hangman.app */;
@@ -157,6 +172,7 @@
 			mainGroup = 9624946C2B8238D800ABCF5E;
 			packageReferences = (
 				967FA45B2BC82EC700A70BA9 /* XCRemoteSwiftPackageReference "SVGKit" */,
+				809538C52BC838F700990887 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 962494762B8238D800ABCF5E /* Products */;
 			projectDirPath = "";
@@ -403,6 +419,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		809538C52BC838F700990887 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.24.0;
+			};
+		};
 		967FA45B2BC82EC700A70BA9 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SVGKit/SVGKit";
@@ -414,6 +438,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		809538C62BC838F700990887 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809538C52BC838F700990887 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		809538C82BC838F700990887 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809538C52BC838F700990887 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		809538CA2BC838F700990887 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809538C52BC838F700990887 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		809538CC2BC838F700990887 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809538C52BC838F700990887 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		809538CE2BC838F700990887 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 809538C52BC838F700990887 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
 		967FA45C2BC82EC700A70BA9 /* SVGKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 967FA45B2BC82EC700A70BA9 /* XCRemoteSwiftPackageReference "SVGKit" */;
