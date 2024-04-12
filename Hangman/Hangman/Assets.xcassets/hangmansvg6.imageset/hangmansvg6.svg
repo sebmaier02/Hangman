@@ -1,7 +1,0 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="2048" height="2048">
-	<title>hangman-svg</title>
-	<style>
-		.s0 { fill: #000000 } 
-	</style>
-	<path id="Form 5" fill-rule="evenodd" class="s0" d="m1260 460c77.3 0 140 62.7 140 140 0 77.3-62.7 140-140 140-77.3 0-140-62.7-140-140 0-77.3 62.7-140 140-140zm-60 140c0 33.1 26.9 60 60 60 33.1 0 60-26.9 60-60 0-33.1-26.9-60-60-60-33.1 0-60 26.9-60 60z"/>
-</svg>

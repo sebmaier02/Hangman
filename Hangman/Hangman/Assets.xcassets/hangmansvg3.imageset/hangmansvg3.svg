@@ -1,7 +1,0 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="2048" height="2048">
-	<title>hangman</title>
-	<style>
-		.s0 { fill: #000000 } 
-	</style>
-	<path id="Form 2" class="s0" d="m40 200c0-8.3 6.7-15 15-15h1320c8.3 0 15 6.7 15 15v50c0 8.3-6.7 15-15 15h-1320c-8.3 0-15-6.7-15-15z"/>
-</svg>

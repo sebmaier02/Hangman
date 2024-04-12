@@ -16,7 +16,7 @@ struct GameView: View {
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
-    let pictures = ["hangmansvg1", "hangmansvg2", "hangmansvg3","hangmansvg4", "hangmansvg5", "hangmansvg6", "hangmansvg7", "hangmansvg8", "hangmansvg9", "hangmansvg10", "hangmansvg11"]
+    let pictures = ["hangmansvgz1", "hangmansvgz2", "hangmansvgz3","hangmansvgz4", "hangmansvgz5", "hangmansvgz6", "hangmansvgz7", "hangmansvgz8", "hangmansvgz9", "hangmansvgz10"]
     
     // Constructor to initialize the game view
     init(word: String, state: StateModel) {
@@ -29,17 +29,25 @@ struct GameView: View {
     
     var body: some View {
         VStack (alignment: .center){
-            ZStack {
-                ForEach(0..<errors, id: \.self) { index in
-                    Image(pictures[index]) // Display hangman image based on errors
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200 ,height: 350)
-                        .border(Color(UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1.0)), width: 10)
-                        .cornerRadius(20)
-                }
-            }
-            
+                Color(red: 39/255, green: 76/255, blue: 67/255)
+                    .scaledToFit()
+                    .frame(width: .infinity)
+                    .border(Color(UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1.0)), width: 10)
+                    .cornerRadius(20)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                    .overlay {
+                        ZStack {
+                            ForEach(0..<errors, id: \.self) { index in
+                                Image(pictures[index])
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: .infinity)
+                                    .padding(.horizontal, 20)
+                                    .padding(.top, 10)
+                            }
+                        }
+                    }
             Spacer()
             
             displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray) // Display lines for each character
@@ -135,8 +143,7 @@ struct displayLetter: View {
                         
                         correct = false
                         
-                        if errors == 11 {
-                            
+                        if errors == 10 {
                             state.gameover.toggle() // Toggle gameover state if 10 errors reached
                             completed.toggle()
                             state.playing.toggle()

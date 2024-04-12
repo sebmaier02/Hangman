@@ -50,8 +50,11 @@ private struct ButtonView: View {
     var text: String // Text to display on the button
     
     var body: some View {
-        Text(text) // Button text
-            .font(.title)
+        Button {
+            
+        } label: {
+            Text(text)
+        }.font(.title)
             .fontWeight(.semibold)
             .foregroundColor(.white)
             .padding()
@@ -60,4 +63,5 @@ private struct ButtonView: View {
             .cornerRadius(20) // Rounded corners
             .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 5) // Shadow effect
     }
+    
 }
