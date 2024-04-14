@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+	<title>Neues Projekt</title>
+	<defs>
+		<image  width="536" height="33" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhgAAAAhAQMAAAChoEAfAAAAAXNSR0IB2cksfwAAAAZQTFRFAAAA//75VaELqQAAAAJ0Uk5TAP9bkSK1AAABWElEQVR4nKWVS26DMBCGPU0k0hXcIBykErlWV4Ej9QCREqkHKTcoqxIpQM04fjKYgczGYOPP8/g9gHjdILZ4LsX98Aoj/cWhzpcZSUt+WFz1U7dfZDyP+/4Y3swkcq3dTjObkxaX4Phj55pMmBi8g2iE3IpOgnV63ujE4ulVKRky98tWER8pf0dHeAwqr4MaZPw8BhHN7vF8AC5jWhyTx/uBzQg0ZNyQjvAZTjy7y8mRRLWCIUSmpdNkzrYbSx9Tl957+1J7Ot1mDRDSNiZrEVvWToGT4GBJpXA51k5dp2li61w/zR4SMKRywbnwgbRnS9ftB5eBhsFHZB2YvCpjRYZoP9VG127sNtBzGdATkypgmYGOxSArXOc4FFcmI9Igk5bLmBYHey8ufLIZodhMeyy++Aw/HvsnSdcwBPwp6YxlclW0hmGd8LvaJsa59LZtYqSN97qJEdg/Mn1wtpKsFdoAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Ebene 4" href="#img1" x="189" y="49"/>
+</svg>

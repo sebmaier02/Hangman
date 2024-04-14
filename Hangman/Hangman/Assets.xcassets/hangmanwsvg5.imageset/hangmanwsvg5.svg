@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+	<title>Neues Projekt</title>
+	<defs>
+		<image  width="22" height="125" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAB9AQMAAACcSQHhAAAAAXNSR0IB2cksfwAAAAZQTFRFAAAA//75VaELqQAAAAJ0Uk5TAP9bkSK1AAAAW0lEQVR4nGNkYGBgZH4rwMj/koNR/i4Lo/1+Jkb7A4yM9Q2EcCNQHa3wQUb5B7TCDxn5P9AKfwRj9h+0wj8Zmf9gYpA4KoaoZ/7zEIgPMjL+a2RkqAdiYFwDMQCMAc+O9+qBgAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Ebene 6" href="#img1" x="712" y="60"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+	<title>Neues Projekt</title>
+	<defs>
+		<image  width="444" height="40" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAAoAQMAAAC//t19AAAAAXNSR0IB2cksfwAAAAZQTFRFAAAA//75VaELqQAAAAJ0Uk5TAP9bkSK1AAABlklEQVR4nJ2VwXWDMAyGZUpLbqT39sEmsEonAU/QEfo6QjdIBul7cV8uuSW3NCVxbYOxDDY46BDA4ZOlX5IhsNBI6IvJ+Xe1COQAp/UCMDkDIslfHAYWX++1vF5j7YYEgdlO33V5ZjsaAj405p7l8reqtyFgVaOHbSlSvEEIqHQxJvIUK1Og8KtiszYEmafImfnB9Oj7p9zABOjnlHlDxUreBfJpToDJYe1YNyX3GCXpYcVpPVieC1SC2XfSXJ4GzT6sgDAeYbl4RKrqWS7o9lXmUpTlOP5rTHgXKAq3rfzAZEiGZDnR8qEti81ou+KzlNe++2jdg6p7lY0VNYdGlwSPwIDiQZlDGKRcG43wZEC4PEbu/KyzRvllOQala2cB7VLJaIWSZKK3SLtDn3wfrRTSD9rHKPb38woToJfTuAfUGt8NDhMLBU+uWbNBUZf9y3h5jgMiWoF+vFG77iyfB9Oj0sFqUGvGfCBw5d5qtdGJ4AQ7Q8M7rwwGzVQEcQjUQ8ryEA7rnu0bCP9EW++R22ynucF77B8t04jp6ghMIQAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Ebene 1" href="#img1" x="0" y="874"/>
+</svg>

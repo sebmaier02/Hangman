@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+	<title>Neues Projekt</title>
+	<defs>
+		<image  width="172" height="173" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKwAAACtAQMAAAAXowY+AAAAAXNSR0IB2cksfwAAAAZQTFRFAAAA//75VaELqQAAAAJ0Uk5TAP9bkSK1AAADXUlEQVR4nM2XX24TMRDG/aVIrQRSuEFyBB55S2/CUZocDJHcgCN0T0CQ+tBKlGX+2uPxpqjwAH7I7v7itb+Z8dozKIsN7Xb9bTXi3eercthnjJ/0c7rN+Pqxe9dv1mf+nbYJb+759/lNwrujXOZVj2e7fn8fsc7YhkE3RgXox3Dtiq9+VKwaEVSHOZGGLk83DbehTYpg8ZMbsKqYVT+/PX5s2uAzPt3YvOJ0weynabs+P7xz4XAhp9v1edq4cJgQmonwp6MJhwkhXZv7aUvminCY6fQqY3pRhMP0gfXQbLujCIfq4y6CSRQa5ukF071j6sFirx/JEhqQ7YHK1pkh03MXxTrN80rEOr7bq5M/fBXTeB7FtgyKPDie2yLjEbmP4raCSRaPCJkl4PW54fhNnNlikTq3r4PsqbiuX8HcCf6/NzIThtWahHVub6prwGQFOUVwsN1sBtvVYfGQ4OASdgqNCb4mTHrBb7WPWnxF9ixhgkh+lXVw2I+YYn+6RfKrxX7E9DxtkdxtZi5gNhMpCkVjjxSFoj5CikJRRyO7W6OF7G7Hyd26EpDd7Ti5u+HOr2z9BTyvkKPQcOduajPjFIWGURIuQI5Cxcnd7PCLeAiO4xQFxUNwHKcovIAPGILDoX8tHmL2ZzgFh/EJQyh5Eb6Ac8z+FR4XleG8TF7q/f+Y81r8mqAtRF7xtP1rvLBiL2BebBfwwrfDK3bhA1S88BUfoIdV12iHYTxsM4TtBA+NdxjI5t5hHpY3pWGP1b1qEXtOUBsf0tAzLLbNve7IyR5OAOCJSmt+ZCTsB0wyU4+jbKY8I+Uh9ajL9sigSMlMUQmwozoaqWcxW7WA5drbrrizR5IflGympEoo2Uw5tVCymZ6I9NHUTppuBXt0yJjKmWzHXdg0q9TsMdijOaMllU3h3d7SLR6uKdRE1vLYqpD0OfYMuLR7tB6OPXvkjDpUMjwgdPY6J+nzhJXv3Xx70ZN4m5PGqBm1pPwwY1paLgm4KOcEvSbx8iTvakngWKoMfpmLkFYg8JD8ttRIAWsFc/rC/7YqI9Y7oSZpFVZXwcTKJtQ7sQ6KRVOommLlFebs6rRakZnLcg1ofv9NxWjKPRp1wesovowqlu5DNaoap+2AuxUaP6a5dh52TGu/ACt3TIyWacnkAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+	</style>
+	<use id="Ebene 7" href="#img1" x="627" y="171"/>
+</svg>

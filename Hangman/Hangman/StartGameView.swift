@@ -10,6 +10,10 @@ import SwiftUI
 struct StartGameView: View {
     @Environment(\.dismiss) var dismiss
     @AppStorage("highscore") var highscore: Int = 0
+    
+    let bwl = Color("BWLColor")
+    let wwl = Color("WWLColor")
+    
     var body: some View {
         VStack (alignment: .center) {
             
@@ -17,6 +21,7 @@ struct StartGameView: View {
             
             Text("Rules")
                 .font(.largeTitle)
+                .foregroundStyle(bwl)
                 .padding(.bottom, 20)
             
             VStack {
@@ -26,34 +31,32 @@ struct StartGameView: View {
             }
             .padding()
             .background(Color.gray.opacity(0.3))
-            .cornerRadius(20)
+            .clipShape(.rect(cornerRadius: 20))
             .font(.title2)
-            .foregroundColor(.black)
+            .foregroundColor(bwl)
             .multilineTextAlignment(.center)
             
             Spacer()
             
             Text("Highscore: \(highscore)")
                 .font(.largeTitle)
+                .foregroundStyle(bwl)
                 .padding(.bottom)
-            
-            Text("")
-                .font(.title2)
             
             Spacer()
             
             NavigationLink{
                 PlayControllerView()
             } label: {
-                Text("Start")
-                    .font(.title)
+                Text("Start Game")
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+                    .foregroundStyle(wwl)
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black)
-                    .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.5), radius: 10, x: 0, y: 5)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .background(bwl)
+                    .clipShape(.rect(cornerRadius: 20))
+                    .shadow(color: bwl.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
             }
             
             Spacer()

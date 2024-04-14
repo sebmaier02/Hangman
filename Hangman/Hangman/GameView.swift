@@ -16,7 +16,7 @@ struct GameView: View {
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
-    let pictures = ["hangmansvgz1", "hangmansvgz2", "hangmansvgz3","hangmansvgz4", "hangmansvgz5", "hangmansvgz6", "hangmansvgz7", "hangmansvgz8", "hangmansvgz9", "hangmansvgz10"]
+    let pictures = ["hangmanwsvg1", "hangmanwsvg2", "hangmanwsvg3","hangmanwsvg4", "hangmanwsvg5", "hangmanwsvg6", "hangmanwsvg7", "hangmanwsvg8", "hangmanwsvg9"]
     
     // Constructor to initialize the game view
     init(word: String, state: StateModel) {
@@ -29,30 +29,28 @@ struct GameView: View {
     
     var body: some View {
         VStack (alignment: .center){
-                Color(red: 39/255, green: 76/255, blue: 67/255)
-                    .scaledToFit()
-                    .frame(width: .infinity)
-                    .border(Color(UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1.0)), width: 10)
-                    .cornerRadius(20)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 10)
-                    .overlay {
+            Color(red: 39/255, green: 76/255, blue: 67/255)
+                .frame(maxHeight: .infinity)
+                .frame(maxWidth: .infinity)
+                .border(Color(UIColor(red: 192/255, green: 192/255, blue: 192/255, alpha: 1.0)), width: 10)
+                .cornerRadius(20)
+                .overlay {
+                    VStack {
                         ZStack {
                             ForEach(0..<errors, id: \.self) { index in
                                 Image(pictures[index])
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: .infinity)
-                                    .padding(.horizontal, 20)
-                                    .padding(.top, 10)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal, 40)
                             }
                         }
+                        
+                        displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray) // Display lines for each character
                     }
-            Spacer()
+                }
             
-            displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray) // Display lines for each character
-            
-            Spacer()
+            Spacer(minLength: 40)
             
             // Display alphabets in rows
             HStack(alignment: .center) {
@@ -104,13 +102,17 @@ struct displayLetter: View {
     
     @Environment(\.dismiss) var dismiss
     
+    let correctColor = Color("CorrectColor")
+    let wrongColor = Color("WrongColor")
+    let neutralColor = Color("StandardColor")
+    
     @Binding var errors: Int
     @Binding var wordCharArray: [Character]
     @Binding var emptyWordCharArray: [Character]
     
     @State var tapped: Bool = false
-    @State var op: Double = 1.0
     @State var correct: Bool = false
+    @State var color = Color.gray.opacity(0.3)
     
     var character: Character
     
@@ -118,13 +120,12 @@ struct displayLetter: View {
     
     var body: some View {
         // Display a gray box representing a letter
-        Color.gray
-            .opacity(op)
+        color
             .frame(width: 40, height: 50)
             .cornerRadius(5)
             .overlay() {
                 Text(String(character)) // Display the character inside the box
-                    .font(Font.custom("Miology", size: 24))
+                    .font(Font.custom("Miology", size: 28))
             }
             .onTapGesture {
                 if !completed {
@@ -139,17 +140,19 @@ struct displayLetter: View {
                         
                         if !correct {
                             errors += 1 // Increment errors if the character is not in the word
+                            color = wrongColor
+                        } else {
+                            color = correctColor
                         }
                         
                         correct = false
                         
-                        if errors == 10 {
+                        if errors == 9 {
                             state.gameover.toggle() // Toggle gameover state if 10 errors reached
                             completed.toggle()
                             state.playing.toggle()
                         }
                         
-                        op = 0.2
                         tapped.toggle()
                     }
                 }
@@ -169,13 +172,17 @@ struct displayLines: View {
                     Text(String(wordCharArray[index])) // Display each character
                         .padding(.bottom, -18)
                         .font(Font.custom("Miology", size: 24))
+                        .foregroundStyle(.white)
                     
-                    Image("strich3") // Display a line beneath each character
+                    Image("Unterstrich1")
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: 40, maxHeight: 20)
+                        .frame(maxWidth: 20)
+                    
                 }
             }
         }
+        .padding(.horizontal, 40)
+        .padding(.bottom, 5)
     }
 }
