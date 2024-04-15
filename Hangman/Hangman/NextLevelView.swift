@@ -14,21 +14,30 @@ struct NextLevelView: View {
         VStack {
             if !state.gameover { // If game is not over
                 // Display congratulations and prompt to continue
+                Spacer()
+                
                 Text("Well done!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(bwl)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, -12)
+                
+                Spacer()
                 
                 Text("Let's keep going!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(bwl)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 60)
                 
-                Text("Score: \(state.score)") // Display current score
+                Spacer()
+                
+                Text("Score: \(state.score)")
+                    .font(.title2)
+                    .bold()
+                    .foregroundStyle(bwl)// Display current score
+                
+                Spacer()
                 
                 // Button to proceed to the next level
                 Text("next one")
@@ -44,8 +53,12 @@ struct NextLevelView: View {
                         state.fetched.toggle() // Toggle fetched state
                         state.playing.toggle() // Toggle playing state
                     }
+                
+                Spacer()
             } else { // If game is over
                 // Display the word and a message for the end of the game
+                Spacer()
+                
                 Text("The word was:")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -57,7 +70,8 @@ struct NextLevelView: View {
                     .fontWeight(.bold)
                     .foregroundColor(bwl)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 18)
+                
+                Spacer()
                 
                 Text("Too bad.")
                     .font(.largeTitle)
@@ -65,15 +79,22 @@ struct NextLevelView: View {
                     .foregroundColor(bwl)
                     .multilineTextAlignment(.center)
                 
+                Spacer()
+                
                 Text("Maybe next time ;)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(bwl)
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 60)
+                
+                Spacer()
                 
                 Text("Final score: \(state.score)")
+                    .font(.largeTitle)
                     .foregroundStyle(bwl)
+                    .bold()
+                
+                Spacer()
                 
                 // Button to end the game
                 Text("End game")
@@ -91,8 +112,10 @@ struct NextLevelView: View {
                         }
                         state.end.toggle() // Toggle end state
                     }
+                
+                Spacer()
             }
         }
-        .padding()
+        .padding(.horizontal)
     }
 }

@@ -15,14 +15,14 @@ struct StartGameView: View {
     let wwl = Color("WWLColor")
     
     var body: some View {
-        VStack (alignment: .center) {
+        VStack {
             
             Spacer()
             
             Text("Rules")
                 .font(.largeTitle)
                 .foregroundStyle(bwl)
-                .padding(.bottom, 20)
+                .bold()
             
             VStack {
                 Text("In this mode you will get a random english word.")
@@ -42,13 +42,14 @@ struct StartGameView: View {
                 .font(.largeTitle)
                 .foregroundStyle(bwl)
                 .padding(.bottom)
+                .bold()
             
             Spacer()
             
             NavigationLink{
                 PlayControllerView()
             } label: {
-                Text("Start Game")
+                Text("Start")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.semibold)
                     .foregroundStyle(wwl)

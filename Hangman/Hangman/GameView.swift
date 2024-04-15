@@ -173,6 +173,7 @@ struct displayLines: View {
                         .padding(.bottom, -18)
                         .font(Font.custom("Miology", size: 24))
                         .foregroundStyle(.white)
+                        .frame(maxWidth: 20)
                     
                     Image("Unterstrich1")
                         .resizable()
