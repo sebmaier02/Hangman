@@ -3,12 +3,10 @@ import SwiftUI
 struct NextLevelView: View {
     @ObservedObject var state: StateModel // ObservedObject to manage state
     
-    @AppStorage("highscore") var highscore: Int = 0 // AppStorage for storing high score
+    @AppStorage("highscore") var highscore: Double = 0 // AppStorage for storing high score
+    @AppStorage("streak") var streak: Double = 0
     
     var word: String // The word to be displayed
-    
-    let bwl = Color("BWLColor")
-    let wwl = Color("WWLColor")
     
     var body: some View {
         VStack {
@@ -18,35 +16,56 @@ struct NextLevelView: View {
                 
                 Text("Well done!")
                     .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(bwl)
-                    .multilineTextAlignment(.center)
-                
-                Text("Let's keep going!")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(bwl)
-                    .multilineTextAlignment(.center)
+                    .bold()
+                    .foregroundColor(.BWL)
                 
                 Spacer()
                 
-                Text("Score: \(state.score)")
-                    .font(.title2)
+                Image(uiImage: .happyFace)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .padding(.horizontal, 120)
+                
+                Spacer()
+                
+                Text("Stats")
+                    .font(.largeTitle)
+                    .foregroundStyle(.BWL)
                     .bold()
-                    .foregroundStyle(bwl)// Display current score
+                
+                HStack {
+                    Group {
+                        VStack {
+                            Text("Streak")
+                            
+                            Text("\(String(format: "%.0f", state.streak))")
+                        }
+                        
+                        VStack {
+                            Text("Points")
+                            
+                            Text("\(String(format: "%.0f", state.highscore))")
+                        }
+                    }
+                    .font(.title2)
+                    .foregroundStyle(.BWL)
+                    .background(.gray.opacity(0.3))
+                    .clipShape(.rect(cornerRadius: 20))
+                }
                 
                 Spacer()
                 
                 // Button to proceed to the next level
-                Text("next one")
+                Text("Next")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.semibold)
-                    .foregroundStyle(wwl)
+                    .foregroundStyle(.WWL)
                     .padding()
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(bwl)
+                    .background(.BWL)
                     .clipShape(.rect(cornerRadius: 20))
-                    .shadow(color: bwl.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
+                    .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
                     .onTapGesture {
                         state.fetched.toggle() // Toggle fetched state
                         state.playing.toggle() // Toggle playing state
@@ -59,37 +78,32 @@ struct NextLevelView: View {
                 
                 Text("The word was:")
                     .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(bwl)
-                    .multilineTextAlignment(.center)
+                    .bold()
+                    .foregroundColor(.BWL)
                 
                 Text(word.uppercased()) // Display the word
                     .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(bwl)
-                    .multilineTextAlignment(.center)
+                    .bold()
+                    .foregroundColor(.BWL)
                 
                 Spacer()
                 
-                Text("Too bad.")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(bwl)
-                    .multilineTextAlignment(.center)
+                Image(uiImage: .sadFace)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .padding(.horizontal, 120)
                 
                 Spacer()
                 
-                Text("Maybe next time ;)")
+                Text("Streak: \(String(format: "%.0f", state.streak))")
                     .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(bwl)
-                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.BWL)
+                    .bold()
                 
-                Spacer()
-                
-                Text("Final score: \(state.score)")
+                Text("Final points: \(String(format: "%.0f", state.score))")
                     .font(.largeTitle)
-                    .foregroundStyle(bwl)
+                    .foregroundStyle(.BWL)
                     .bold()
                 
                 Spacer()
@@ -98,16 +112,21 @@ struct NextLevelView: View {
                 Text("End game")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.semibold)
-                    .foregroundStyle(wwl)
+                    .foregroundStyle(.WWL)
                     .padding()
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(bwl)
+                    .background(.BWL)
                     .clipShape(.rect(cornerRadius: 20))
-                    .shadow(color: bwl.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
+                    .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
                     .onTapGesture {
                         if state.score > highscore { // If current score is higher than highscore
                             highscore = state.score // Update highscore
                         }
+                        
+                        if state.streak > streak {
+                            streak = state.streak
+                        }
+                        
                         state.end.toggle() // Toggle end state
                     }
                 

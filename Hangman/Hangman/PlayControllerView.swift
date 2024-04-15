@@ -10,9 +10,6 @@ struct PlayControllerView: View {
     // State variable for storing the word
     @State var word: String = ""
     
-    let bwl = Color("BWLColor")
-    let wwl = Color("WWLColor")
-    
     var body: some View {
         if !state.error { // Check if there is no error
             if state.fetched { // Check if the word is fetched
@@ -45,7 +42,7 @@ struct PlayControllerView: View {
                     Text("Fetching new word") // Display fetching message
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(bwl)
+                        .foregroundColor(.BWL)
                         .onAppear {
                             fetchWord() // Fetch new word when the view appears
                         }
@@ -61,19 +58,19 @@ struct PlayControllerView: View {
                 Text("An error occurred while fetching") // Display error message
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(bwl)
+                    .foregroundColor(.BWL)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 60)
                 
                 Text("Try again") // Retry button
                     .font(.title)
                     .fontWeight(.semibold)
-                    .foregroundColor(wwl)
+                    .foregroundColor(.BWL)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(bwl)
+                    .background(.BWL)
                     .cornerRadius(20)
-                    .shadow(color: bwl.opacity(0.5), radius: 10, x: 0, y: 5)
+                    .shadow(color: .BWL.opacity(0.5), radius: 10, x: 0, y: 5)
                     .onTapGesture {
                         state.error = false // Retry fetching on tap
                     }

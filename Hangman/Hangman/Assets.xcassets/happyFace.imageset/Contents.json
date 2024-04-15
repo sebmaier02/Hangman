@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "homescreenImage.png",
+      "filename" : "happyFace.png",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "image-2.png",
+      "filename" : "imageedit_5_7303784822.png",
       "idiom" : "universal"
     }
   ],

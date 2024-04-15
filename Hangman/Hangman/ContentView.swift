@@ -2,11 +2,6 @@ import SwiftUI
 import WebKit
 
 struct ContentView: View {
-    // AppStorage property wrapper to store and retrieve highscore value
-    @AppStorage("highscore") var highscore: Int = 0
-    
-    let bwl = Color("BWLColor")
-    let wwl = Color("WWLColor")
     
     var body: some View {
         NavigationStack {
@@ -15,7 +10,7 @@ struct ContentView: View {
                 
                 Text("Welcome to Hangman")
                     .font(.largeTitle)
-                    .foregroundStyle(bwl)
+                    .foregroundStyle(.BWL)
                     .bold()
                 
                 Spacer()
@@ -32,18 +27,19 @@ struct ContentView: View {
                     Text("Play")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .fontWeight(.semibold)
-                        .foregroundStyle(wwl)
+                        .foregroundStyle(.WWL)
                         .padding()
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        .background(bwl)
+                        .background(.BWL)
                         .clipShape(.rect(cornerRadius: 20))
-                        .shadow(color: bwl.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
+                        .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
                 }
                 
                 Spacer()
             }
             .padding(.horizontal)
         }
+        .tint(.BWL)
     }
 }
 

@@ -5,7 +5,7 @@ class StateModel: ObservableObject {
     @Published var playing: Bool = true
     
     // Tracks the score of the player
-    @Published var score: Int = 0
+    @Published var score: Double = 0
     
     // Indicates whether the game is over
     @Published var gameover: Bool = false
@@ -18,4 +18,6 @@ class StateModel: ObservableObject {
     
     // Indicates whether an error occurred during fetching or processing the word
     @Published var error: Bool = false
+    
+    @Published var streak: Double = 0
 }

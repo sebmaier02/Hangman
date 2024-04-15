@@ -3,20 +3,22 @@ import SwiftUI
 struct GameView: View {
     @ObservedObject var state: StateModel // ObservedObject to manage state
     
-    @AppStorage("highscore") var highscore: Int = 0 // AppStorage for storing high score
+    @AppStorage("highscore") var highscore: Double = 0 // AppStorage for storing high score
+    @AppStorage("streak") var streak: Double = 0
     
     @State var errors: Int = 0 // State variable to track errors
     @State var wordCharArray: [Character] // State variable to store characters of the word
     @State var emptyWordCharArray: [Character] // State variable to store guessed characters
     @State var characterCount: Int // State variable to store word length
     @State var completed: Bool = false // State variable to track completion
+    @State var showInfo: Bool = false
     
     // Arrays to hold alphabets and hangman images
     let alphabet1 = Array("ABCDEF")
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
-    let pictures = ["hangmanwsvg1", "hangmanwsvg2", "hangmanwsvg3","hangmanwsvg4", "hangmanwsvg5", "hangmanwsvg6", "hangmanwsvg7", "hangmanwsvg8", "hangmanwsvg9"]
+    let pictures: [UIImage] = [.hangmanwsvg1, .hangmanwsvg2, .hangmanwsvg3, .hangmanwsvg4, .hangmanwsvg5, .hangmanwsvg6, .hangmanwsvg7, .hangmanwsvg8, .hangmanwsvg9]
     
     // Constructor to initialize the game view
     init(word: String, state: StateModel) {
@@ -28,7 +30,7 @@ struct GameView: View {
     }
     
     var body: some View {
-        VStack (alignment: .center){
+        VStack (alignment: .center) {
             Color(red: 39/255, green: 76/255, blue: 67/255)
                 .frame(maxHeight: .infinity)
                 .frame(maxWidth: .infinity)
@@ -38,7 +40,7 @@ struct GameView: View {
                     VStack {
                         ZStack {
                             ForEach(0..<errors, id: \.self) { index in
-                                Image(pictures[index])
+                                Image(uiImage: pictures[index])
                                     .resizable()
                                     .scaledToFit()
                                     .frame(maxWidth: .infinity)
@@ -77,15 +79,41 @@ struct GameView: View {
                 }
             }
         }
+        .onAppear{
+            let multiplicator: Double = 1+(Double(state.streak)/10)
+            print(multiplicator)
+            state.score += 100*multiplicator
+        }
         .padding()
-        .onChange(of: emptyWordCharArray) { _ in
+        .onChange(of: emptyWordCharArray) {
             // Check if the word is completed
             if emptyWordCharArray == wordCharArray {
                 completed.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    state.streak += 1
                     state.playing.toggle() // Toggle playing state
                 }
             }
+        }
+        .toolbar{
+            Image(systemName: "info.circle")
+                .onTapGesture {
+                    showInfo.toggle()
+                }
+                .alert("Point System", isPresented: $showInfo) {
+                    Button {
+                        
+                    } label: {
+                        Text("OK")
+                            .font(.title2)
+                            .foregroundStyle(.BWL)
+                    }
+                } message: {
+                    Text("Starting with 100 points, each incorrect guess deducts 10 points. However, correctly guessing the word propels you to the next round with a 10% point increase. For instance, reaching the second round boosts your starting points to 110.")
+                        .font(.title2)
+                        .foregroundColor(.BWL)
+                        .multilineTextAlignment(.center)
+                }
         }
     }
     
@@ -101,10 +129,6 @@ struct displayLetter: View {
     @ObservedObject var state: StateModel
     
     @Environment(\.dismiss) var dismiss
-    
-    let correctColor = Color("CorrectColor")
-    let wrongColor = Color("WrongColor")
-    let neutralColor = Color("StandardColor")
     
     @Binding var errors: Int
     @Binding var wordCharArray: [Character]
@@ -123,6 +147,7 @@ struct displayLetter: View {
         color
             .frame(width: 40, height: 50)
             .cornerRadius(5)
+            .shadow(color: color.opacity(0.5), radius: 5, x: 0, y: 5)
             .overlay() {
                 Text(String(character)) // Display the character inside the box
                     .font(Font.custom("Miology", size: 28))
@@ -134,15 +159,16 @@ struct displayLetter: View {
                             if character == wordCharArray[index] {
                                 emptyWordCharArray[index] = character // Fill in the guessed character
                                 correct = true
-                                state.score += 10 // Increase score
+                                
                             }
                         }
                         
                         if !correct {
                             errors += 1 // Increment errors if the character is not in the word
-                            color = wrongColor
+                            color = .wrong
+                            state.score -= 10
                         } else {
-                            color = correctColor
+                            color = .correct
                         }
                         
                         correct = false
@@ -170,20 +196,18 @@ struct displayLines: View {
             ForEach(0..<characterCount) { index in
                 VStack {
                     Text(String(wordCharArray[index])) // Display each character
-                        .padding(.bottom, -18)
-                        .font(Font.custom("Miology", size: 24))
+                        .font(Font.custom("Miology", size: 20))
                         .foregroundStyle(.white)
                         .frame(maxWidth: 20)
+                        .padding(.bottom, -20)
                     
-                    Image("Unterstrich1")
+                    Image(uiImage: .unterstrich1)
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 20)
-                    
                 }
             }
         }
         .padding(.horizontal, 40)
-        .padding(.bottom, 5)
     }
 }
