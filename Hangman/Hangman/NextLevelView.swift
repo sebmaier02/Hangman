@@ -22,8 +22,6 @@ struct NextLevelView: View {
                     .foregroundColor(bwl)
                     .multilineTextAlignment(.center)
                 
-                Spacer()
-                
                 Text("Let's keep going!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
