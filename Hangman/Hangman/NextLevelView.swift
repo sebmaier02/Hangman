@@ -1,17 +1,18 @@
 import SwiftUI
 
 struct NextLevelView: View {
-    @ObservedObject var state: StateModel // ObservedObject to manage state
+    @ObservedObject var state: StateModel
     
-    @AppStorage("highscore") var highscore: Double = 0 // AppStorage for storing high score
+    @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
     
-    var word: String // The word to be displayed
+    @State var showWarning: Bool = false
+    
+    var word: String
     
     var body: some View {
         VStack {
-            if !state.gameover { // If game is not over
-                // Display congratulations and prompt to continue
+            if !state.gameover {
                 Spacer()
                 
                 Text("Well done!")
@@ -29,34 +30,18 @@ struct NextLevelView: View {
                 
                 Spacer()
                 
-                Text("Stats")
+                Text("Streak: \(String(format: "%.0f", state.streak))")
                     .font(.largeTitle)
                     .foregroundStyle(.BWL)
                     .bold()
                 
-                HStack {
-                    Group {
-                        VStack {
-                            Text("Streak")
-                            
-                            Text("\(String(format: "%.0f", state.streak))")
-                        }
-                        
-                        VStack {
-                            Text("Points")
-                            
-                            Text("\(String(format: "%.0f", state.highscore))")
-                        }
-                    }
-                    .font(.title2)
+                Text("Points: \(String(format: "%.0f", state.score))")
+                    .font(.largeTitle)
                     .foregroundStyle(.BWL)
-                    .background(.gray.opacity(0.3))
-                    .clipShape(.rect(cornerRadius: 20))
-                }
+                    .bold()
                 
                 Spacer()
                 
-                // Button to proceed to the next level
                 Text("Next")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.semibold)
@@ -66,14 +51,14 @@ struct NextLevelView: View {
                     .background(.BWL)
                     .clipShape(.rect(cornerRadius: 20))
                     .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
+                    .padding(.horizontal, 70)
                     .onTapGesture {
-                        state.fetched.toggle() // Toggle fetched state
-                        state.playing.toggle() // Toggle playing state
+                        state.fetched.toggle()
+                        state.playing.toggle()
                     }
                 
                 Spacer()
-            } else { // If game is over
-                // Display the word and a message for the end of the game
+            } else {
                 Spacer()
                 
                 Text("The word was:")
@@ -81,7 +66,7 @@ struct NextLevelView: View {
                     .bold()
                     .foregroundColor(.BWL)
                 
-                Text(word.uppercased()) // Display the word
+                Text(word.uppercased())
                     .font(.largeTitle)
                     .bold()
                     .foregroundColor(.BWL)
@@ -108,7 +93,15 @@ struct NextLevelView: View {
                 
                 Spacer()
                 
-                // Button to end the game
+                if state.score > highscore {
+                    Text("New Highscore!!!")
+                        .font(.largeTitle)
+                        .foregroundStyle(.BWL)
+                        .bold()
+                }
+                
+                Spacer()
+                
                 Text("End game")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.semibold)
@@ -118,21 +111,56 @@ struct NextLevelView: View {
                     .background(.BWL)
                     .clipShape(.rect(cornerRadius: 20))
                     .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
+                    .padding(.horizontal, 70)
                     .onTapGesture {
-                        if state.score > highscore { // If current score is higher than highscore
-                            highscore = state.score // Update highscore
+                        if state.score > highscore {
+                            highscore = state.score
                         }
                         
                         if state.streak > streak {
                             streak = state.streak
                         }
                         
-                        state.end.toggle() // Toggle end state
+                        state.end.toggle()
                     }
                 
                 Spacer()
             }
         }
         .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    showWarning.toggle()
+                }) {
+                    Text("\(Image(systemName: "chevron.left"))")
+                        .fontWeight(.bold)
+                }
+                .alert("Loosing Points", isPresented: $showWarning) {
+                    HStack {
+                        Button {
+                            state.end.toggle()
+                        } label: {
+                            Text("Leave")
+                                .foregroundStyle(.red)
+                        }
+                        
+                        Button {
+                            showWarning.toggle()
+                        } label: {
+                            Text ("Stay")
+                                .foregroundStyle(.green)
+                        }
+                    }
+                } message: {
+                    Text("If you leave your current score and streak will not be saved.")
+                        .font(.title2)
+                        .foregroundColor(.BWL)
+                        .multilineTextAlignment(.center)
+                }
+            }
+        })
+        
     }
 }

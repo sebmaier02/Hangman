@@ -11,9 +11,11 @@ struct StartGameView: View {
     @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        VStack {
-            ScrollView {
+        ZStack {
+            ScrollView (showsIndicators: false){
                 Spacer()
                 
                 Text("Stats")
@@ -41,7 +43,6 @@ struct StartGameView: View {
                     .background(.gray.opacity(0.3))
                     .clipShape(.rect(cornerRadius: 20))
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    
                 }
                 
                 Spacer(minLength: 40)
@@ -76,33 +77,40 @@ struct StartGameView: View {
                     .foregroundColor(.BWL)
                     .multilineTextAlignment(.center)
                 
+                Spacer(minLength: 100)
+            }
+            
+            VStack {
                 Spacer()
+                
+                NavigationLink{
+                    PlayControllerView()
+                } label: {
+                    Text("Start")
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .bold()
+                        .foregroundStyle(.WWL)
+                        .padding()
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                        .background(.BWL)
+                        .clipShape(.rect(cornerRadius: 20))
+                        .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
+                        .padding(.horizontal, 70)
+                }
             }
-            .onAppear {
-                // Nachdem die ScrollView erscheint, die scrollIndicators ausblenden
-                UIScrollView.appearance().showsVerticalScrollIndicator = false
-                UIScrollView.appearance().showsHorizontalScrollIndicator = false
-            }
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-            
-            
-            NavigationLink{
-                PlayControllerView()
-            } label: {
-                Text("Start")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.WWL)
-                    .padding()
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(.BWL)
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
-            }
-            
-            Spacer()
         }
         .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("\(Image(systemName: "chevron.left"))")
+                        .fontWeight(.bold)
+                }
+            }
+        })
     }
 }
 

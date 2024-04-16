@@ -1,32 +1,32 @@
 import SwiftUI
 
 struct GameView: View {
-    @ObservedObject var state: StateModel // ObservedObject to manage state
+    @ObservedObject var state: StateModel
     
-    @AppStorage("highscore") var highscore: Double = 0 // AppStorage for storing high score
+    @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
     
-    @State var errors: Int = 0 // State variable to track errors
-    @State var wordCharArray: [Character] // State variable to store characters of the word
-    @State var emptyWordCharArray: [Character] // State variable to store guessed characters
-    @State var characterCount: Int // State variable to store word length
-    @State var completed: Bool = false // State variable to track completion
+    @State var errors: Int = 0
+    @State var wordCharArray: [Character]
+    @State var emptyWordCharArray: [Character]
+    @State var completed: Bool = false
     @State var showInfo: Bool = false
+    @State var showWarning: Bool = false
     
-    // Arrays to hold alphabets and hangman images
     let alphabet1 = Array("ABCDEF")
     let alphabet2 = Array("GHIJKLM")
     let alphabet3 = Array("NOPQRS")
     let alphabet4 = Array("TUVWXYZ")
+    let alphabetArray: [[Character]]
+    
     let pictures: [UIImage] = [.hangmanwsvg1, .hangmanwsvg2, .hangmanwsvg3, .hangmanwsvg4, .hangmanwsvg5, .hangmanwsvg6, .hangmanwsvg7, .hangmanwsvg8, .hangmanwsvg9]
     
-    // Constructor to initialize the game view
     init(word: String, state: StateModel) {
         let uppercasedWord = word.uppercased()
         _wordCharArray = State(initialValue: Array(uppercasedWord))
         _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
-        _characterCount = State(initialValue: uppercasedWord.count)
         self.state = state
+        alphabetArray = [alphabet1, alphabet2, alphabet3, alphabet4]
     }
     
     var body: some View {
@@ -39,6 +39,11 @@ struct GameView: View {
                 .overlay {
                     VStack {
                         ZStack {
+                            Color.gray.opacity(0)
+                                .aspectRatio(1.0, contentMode: .fit)
+                                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                .padding(.horizontal, 40)
+                            
                             ForEach(0..<errors, id: \.self) { index in
                                 Image(uiImage: pictures[index])
                                     .resizable()
@@ -48,87 +53,99 @@ struct GameView: View {
                             }
                         }
                         
-                        displayLines(characterCount: $characterCount, wordCharArray: $emptyWordCharArray) // Display lines for each character
+                        VStack {
+                            displayLines(characterCount: wordCharArray.count, wordCharArray: $emptyWordCharArray)
+                                .padding(.top, 40)
+                        }
+                        
                     }
+                    .frame(alignment: .bottom)
                 }
             
             Spacer(minLength: 40)
             
-            // Display alphabets in rows
-            HStack(alignment: .center) {
-                ForEach(alphabet1, id: \.self) { letter in
-                    displayLetter(character: letter) // Display each alphabet
+            ForEach(0..<alphabetArray.count) { index in
+                HStack(alignment: .center) {
+                    ForEach(alphabetArray[index], id: \.self) { letter in
+                        displayLetter(state: state, errors: $errors, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, character: letter, completed: $completed)
+                    }
                 }
             }
             
-            HStack(alignment: .center) {
-                ForEach(alphabet2, id: \.self) { letter in
-                    displayLetter(character: letter) // Display each alphabet
-                }
-            }
-            
-            HStack(alignment: .center) {
-                ForEach(alphabet3, id: \.self) { letter in
-                    displayLetter(character: letter) // Display each alphabet
-                }
-            }
-            
-            HStack(alignment: .center) {
-                ForEach(alphabet4, id: \.self) { letter in
-                    displayLetter(character: letter) // Display each alphabet
-                }
-            }
-        }
-        .onAppear{
-            let multiplicator: Double = 1+(Double(state.streak)/10)
-            print(multiplicator)
-            state.score += 100*multiplicator
         }
         .padding()
         .onChange(of: emptyWordCharArray) {
-            // Check if the word is completed
             if emptyWordCharArray == wordCharArray {
                 completed.toggle()
+                let basepoints: Double = 100*(1+(state.streak/10))
+                let errorPoints: Double = Double(errors*10)
+                state.score += (basepoints-errorPoints)
+                state.streak += 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    state.streak += 1
-                    state.playing.toggle() // Toggle playing state
+                    state.playing.toggle()
                 }
             }
         }
-        .toolbar{
-            Image(systemName: "info.circle")
-                .onTapGesture {
-                    showInfo.toggle()
+        .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    showWarning.toggle()
+                }) {
+                    Text("\(Image(systemName: "chevron.left"))")
+                        .fontWeight(.bold)
                 }
-                .alert("Point System", isPresented: $showInfo) {
-                    Button {
+                .alert("Loosing Points", isPresented: $showWarning) {
+                    HStack {
+                        Button {
+                            state.end.toggle()
+                        } label: {
+                            Text("Leave")
+                                .foregroundStyle(.red)
+                        }
                         
-                    } label: {
-                        Text("OK")
-                            .font(.title2)
-                            .foregroundStyle(.BWL)
+                        Button {
+                            showWarning.toggle()
+                        } label: {
+                            Text ("Stay")
+                                .foregroundStyle(.green)
+                        }
                     }
                 } message: {
-                    Text("Starting with 100 points, each incorrect guess deducts 10 points. However, correctly guessing the word propels you to the next round with a 10% point increase. For instance, reaching the second round boosts your starting points to 110.")
+                    Text("If you leave your current score and streak will not be saved.")
                         .font(.title2)
                         .foregroundColor(.BWL)
                         .multilineTextAlignment(.center)
                 }
-        }
-    }
-    
-    // Function to display each letter
-    func displayLetter(character: Character) -> some View {
-        // Use the displayLetter view
-        Hangman.displayLetter(state: state, errors: $errors, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, character: character, completed: $completed)
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Image(systemName: "info.circle")
+                    .onTapGesture {
+                        showInfo.toggle()
+                    }
+                    .alert("Point System", isPresented: $showInfo) {
+                        Button {
+                            
+                        } label: {
+                            Text("OK")
+                                .font(.title2)
+                                .foregroundStyle(.BWL)
+                        }
+                    } message: {
+                        Text("Starting with 100 points, each incorrect guess deducts 10 points. However, correctly guessing the word propels you to the next round with a 10% point increase. For instance, reaching the second round boosts your starting points to 110.")
+                            .font(.title2)
+                            .foregroundColor(.BWL)
+                            .multilineTextAlignment(.center)
+                    }
+            }
+        })
     }
 }
 
 // View to display a letter
 struct displayLetter: View {
     @ObservedObject var state: StateModel
-    
-    @Environment(\.dismiss) var dismiss
     
     @Binding var errors: Int
     @Binding var wordCharArray: [Character]
@@ -143,13 +160,12 @@ struct displayLetter: View {
     @Binding var completed: Bool
     
     var body: some View {
-        // Display a gray box representing a letter
         color
             .frame(width: 40, height: 50)
             .cornerRadius(5)
             .shadow(color: color.opacity(0.5), radius: 5, x: 0, y: 5)
             .overlay() {
-                Text(String(character)) // Display the character inside the box
+                Text(String(character))
                     .font(Font.custom("Miology", size: 28))
             }
             .onTapGesture {
@@ -157,16 +173,15 @@ struct displayLetter: View {
                     if !tapped {
                         for index in wordCharArray.indices {
                             if character == wordCharArray[index] {
-                                emptyWordCharArray[index] = character // Fill in the guessed character
+                                emptyWordCharArray[index] = character
                                 correct = true
                                 
                             }
                         }
                         
                         if !correct {
-                            errors += 1 // Increment errors if the character is not in the word
+                            errors += 1
                             color = .wrong
-                            state.score -= 10
                         } else {
                             color = .correct
                         }
@@ -174,7 +189,7 @@ struct displayLetter: View {
                         correct = false
                         
                         if errors == 9 {
-                            state.gameover.toggle() // Toggle gameover state if 10 errors reached
+                            state.gameover.toggle()
                             completed.toggle()
                             state.playing.toggle()
                         }
@@ -186,16 +201,15 @@ struct displayLetter: View {
     }
 }
 
-// View to display lines representing each character of the word
 struct displayLines: View {
-    @Binding var characterCount: Int
+    var characterCount: Int
     @Binding var wordCharArray: [Character]
     
     var body: some View {
         HStack {
             ForEach(0..<characterCount) { index in
                 VStack {
-                    Text(String(wordCharArray[index])) // Display each character
+                    Text(String(wordCharArray[index]))
                         .font(Font.custom("Miology", size: 20))
                         .foregroundStyle(.white)
                         .frame(maxWidth: 20)
