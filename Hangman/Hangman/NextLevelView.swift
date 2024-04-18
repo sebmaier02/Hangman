@@ -132,32 +132,10 @@ struct NextLevelView: View {
         .toolbar(content: {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
-                    showWarning.toggle()
+                    state.end.toggle()
                 }) {
                     Text("\(Image(systemName: "chevron.left"))")
                         .fontWeight(.bold)
-                }
-                .alert("Loosing Points", isPresented: $showWarning) {
-                    HStack {
-                        Button {
-                            state.end.toggle()
-                        } label: {
-                            Text("Leave")
-                                .foregroundStyle(.red)
-                        }
-                        
-                        Button {
-                            showWarning.toggle()
-                        } label: {
-                            Text ("Stay")
-                                .foregroundStyle(.green)
-                        }
-                    }
-                } message: {
-                    Text("If you leave your current score and streak will not be saved.")
-                        .font(.title2)
-                        .foregroundColor(.BWL)
-                        .multilineTextAlignment(.center)
                 }
             }
         })

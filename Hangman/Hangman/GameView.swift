@@ -56,6 +56,7 @@ struct GameView: View {
                         VStack {
                             displayLines(characterCount: wordCharArray.count, wordCharArray: $emptyWordCharArray)
                                 .padding(.top, 40)
+                            
                         }
                         
                     }
