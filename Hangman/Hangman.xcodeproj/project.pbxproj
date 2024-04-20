@@ -23,6 +23,7 @@
 		9624947D2B8238DA00ABCF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9624947C2B8238DA00ABCF5E /* Assets.xcassets */; };
 		962494802B8238DA00ABCF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9624947F2B8238DA00ABCF5E /* Preview Assets.xcassets */; };
 		962494872B827F9500ABCF5E /* NextLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962494862B827F9500ABCF5E /* NextLevelView.swift */; };
+		967C6F5C2BD124CA00BC186A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C6F5B2BD124CA00BC186A /* Category.swift */; };
 		967FA45D2BC82EC700A70BA9 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = 967FA45C2BC82EC700A70BA9 /* SVGKit */; };
 		967FA45F2BC82EC700A70BA9 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 967FA45E2BC82EC700A70BA9 /* SVGKitSwift */; };
 		96E3E25B2BCD63AA001F7A10 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 96E3E25A2BCD63AA001F7A10 /* Lottie */; };
@@ -42,6 +43,7 @@
 		9624947C2B8238DA00ABCF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9624947F2B8238DA00ABCF5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		962494862B827F9500ABCF5E /* NextLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLevelView.swift; sourceTree = "<group>"; };
+		967C6F5B2BD124CA00BC186A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				80F3CE2E2B823D3B00E51AF7 /* GameView.swift */,
 				962494862B827F9500ABCF5E /* NextLevelView.swift */,
 				961AD04B2B837854003AF2AE /* PlayControllerView.swift */,
+				967C6F5B2BD124CA00BC186A /* Category.swift */,
 				961AD04D2B837DF2003AF2AE /* StateModel.swift */,
 				809538D02BC83A9400990887 /* GoogleService-Info.plist */,
 				9624947C2B8238DA00ABCF5E /* Assets.xcassets */,
@@ -212,6 +215,7 @@
 				9624947B2B8238D800ABCF5E /* ContentView.swift in Sources */,
 				961AD04C2B837854003AF2AE /* PlayControllerView.swift in Sources */,
 				80F3CE2B2B823C9200E51AF7 /* StartGameView.swift in Sources */,
+				967C6F5C2BD124CA00BC186A /* Category.swift in Sources */,
 				80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */,
 				961AD04E2B837DF2003AF2AE /* StateModel.swift in Sources */,
 				962494792B8238D800ABCF5E /* HangmanApp.swift in Sources */,
