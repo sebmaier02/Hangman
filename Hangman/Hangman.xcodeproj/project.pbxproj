@@ -13,7 +13,7 @@
 		809538CB2BC838F700990887 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 809538CA2BC838F700990887 /* FirebaseCrashlytics */; };
 		809538CD2BC838F700990887 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 809538CC2BC838F700990887 /* FirebaseFirestore */; };
 		809538CF2BC838F700990887 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 809538CE2BC838F700990887 /* FirebaseRemoteConfig */; };
-		80B8B2862BD6B17900B574CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80B8B2852BD6B17900B574CE /* GoogleService-Info.plist */; };
+		80B8B28B2BD6C52F00B574CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80B8B28A2BD6C52F00B574CE /* GoogleService-Info.plist */; };
 		80F3CE2B2B823C9200E51AF7 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */; };
 		80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F3CE2E2B823D3B00E51AF7 /* GameView.swift */; };
 		961AD04C2B837854003AF2AE /* PlayControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AD04B2B837854003AF2AE /* PlayControllerView.swift */; };
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		809538C22BC4428000990887 /* Miology.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Miology.otf; sourceTree = "<group>"; };
 		809538C42BC4446900990887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		80B8B2852BD6B17900B574CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		80B8B28A2BD6C52F00B574CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80F3CE2A2B823C9200E51AF7 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
 		80F3CE2E2B823D3B00E51AF7 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		961AD04B2B837854003AF2AE /* PlayControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayControllerView.swift; sourceTree = "<group>"; };
@@ -93,6 +93,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		80B8B2892BD6C50700B574CE /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				80B8B28A2BD6C52F00B574CE /* GoogleService-Info.plist */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		9624946C2B8238D800ABCF5E = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +120,7 @@
 		962494772B8238D800ABCF5E /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				80B8B2892BD6C50700B574CE /* Firebase */,
 				809538C42BC4446900990887 /* Info.plist */,
 				809538C02BC4425D00990887 /* Ressources */,
 				962494782B8238D800ABCF5E /* HangmanApp.swift */,
@@ -120,7 +129,6 @@
 				968EEEE62BD6AA8900EE25CC /* Managers */,
 				968EEEE72BD6AAD100EE25CC /* BezierPaths */,
 				9624947C2B8238DA00ABCF5E /* Assets.xcassets */,
-				80B8B2852BD6B17900B574CE /* GoogleService-Info.plist */,
 				9624947E2B8238DA00ABCF5E /* Preview Content */,
 				968EEEEC2BD6ADF400EE25CC /* FetchWord.swift */,
 			);
@@ -249,7 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				962494802B8238DA00ABCF5E /* Preview Assets.xcassets in Resources */,
-				80B8B2862BD6B17900B574CE /* GoogleService-Info.plist in Resources */,
+				80B8B28B2BD6C52F00B574CE /* GoogleService-Info.plist in Resources */,
 				9624947D2B8238DA00ABCF5E /* Assets.xcassets in Resources */,
 				809538C32BC4428000990887 /* Miology.otf in Resources */,
 			);
