@@ -14,9 +14,9 @@ struct StartGameView: View {
     @State var showInfo: Bool = false
     @State var categoriesEnabled: Bool = false
     
-    let categories: [Category] = Category.allCases
-    
     @Environment(\.presentationMode) var presentationMode
+    
+    let categories: [Category] = Category.allCases
     
     var body: some View {
         ZStack {
@@ -79,24 +79,22 @@ struct StartGameView: View {
                             ForEach(categories.indices, id: \.self) { index in
                                 let category = categories[index]
                                 let isLeftElement = index % 2 == 0 // Überprüfe, ob der Index gerade ist, um das linke Element zu identifizieren
-                                CatergoryView(text: category.rawValue, categoriesEnabled: $categoriesEnabled, left: isLeftElement)
+                                CategoryView(text: category.rawValue, categoriesEnabled: $categoriesEnabled, left: isLeftElement)
                                     .id(category)
                             }
                         }
-                        Spacer(minLength: 120)
-                    }
-                    .onChange(of: categoriesEnabled) {
-                        if !categoriesEnabled {
-                            withAnimation {
-                                // Finde das linke Element und scrolle zu ihm
-                                if let firstCategory = categories.first {
-                                    scrollView.scrollTo(firstCategory, anchor: .top)
+                        .onChange(of: categoriesEnabled) {
+                            if !categoriesEnabled {
+                                withAnimation {
+                                    if let firstCategory = categories.first {
+                                        scrollView.scrollTo(firstCategory, anchor: .top)
+                                    }
                                 }
                             }
                         }
+                        .opacity(categoriesEnabled ? 1 : 0.3)
+                        .disabled(!categoriesEnabled)
                     }
-                    .opacity(categoriesEnabled ? 1 : 0.3)
-                    .scrollDisabled(!categoriesEnabled)
                 }
             }
             
@@ -104,18 +102,10 @@ struct StartGameView: View {
                 Spacer()
                 
                 NavigationLink{
-                    PlayControllerView()
+                    PlayController()
                 } label: {
-                    Text("Start")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .bold()
-                        .foregroundStyle(.WWL)
-                        .padding()
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        .background(.BWL)
-                        .clipShape(.rect(cornerRadius: 20))
-                        .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
-                        .padding(.horizontal, 70)
+                    ButtonView(text: "Start")
+                        .padding(.bottom, 30)
                 }
             }
         }
@@ -137,10 +127,10 @@ struct StartGameView: View {
                 } label: {
                     Image(systemName: "info.circle")
                 }
-                    
-                    .fullScreenCover(isPresented: $showInfo, content: {
-                        RulesSheetView(showInfo: $showInfo)
-                    })
+                
+                .fullScreenCover(isPresented: $showInfo, content: {
+                    RulesSheetView(showInfo: $showInfo)
+                })
             }
         })
     }

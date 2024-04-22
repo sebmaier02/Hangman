@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CatergoryView: View {
+struct CategoryView: View {
     var text: String
     
     @State var selected: Bool = false

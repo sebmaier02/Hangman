@@ -6,139 +6,109 @@ struct NextLevelView: View {
     @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
     
-    @State var showWarning: Bool = false
-    
     var word: String
     
     var body: some View {
         VStack {
+            Spacer()
+            
             if !state.gameover {
-                Spacer()
-                
                 Text("Well done!")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.BWL)
-                
-                Spacer()
+                    .largeTitleStyle()
                 
                 Image(uiImage: .happyFace)
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .frame(maxWidth: .infinity)
                     .padding(.horizontal, 120)
                 
                 Spacer()
                 
-                Text("Streak: \(String(format: "%.0f", state.streak))")
-                    .font(.largeTitle)
-                    .foregroundStyle(.BWL)
-                    .bold()
+                Text("Streak: \(formattedStreak)")
+                    .largeTitleStyle()
                 
-                Text("Points: \(String(format: "%.0f", state.score))")
-                    .font(.largeTitle)
-                    .foregroundStyle(.BWL)
-                    .bold()
+                Text("Points: \(formattedScore)")
+                    .largeTitleStyle()
                 
                 Spacer()
                 
-                Text("Next")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.WWL)
-                    .padding()
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(.BWL)
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
-                    .padding(.horizontal, 70)
+                ButtonView(text: "Next")
                     .onTapGesture {
-                        state.fetched.toggle()
-                        state.playing.toggle()
+                        nextAction()
                     }
-                
-                Spacer()
             } else {
-                Spacer()
-                
                 Text("The word was:")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.BWL)
+                    .largeTitleStyle()
                 
                 Text(word.uppercased())
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.BWL)
-                
-                Spacer()
+                    .largeTitleStyle()
                 
                 Image(uiImage: .sadFace)
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .frame(maxWidth: .infinity)
                     .padding(.horizontal, 120)
                 
                 Spacer()
                 
-                Text("Streak: \(String(format: "%.0f", state.streak))")
-                    .font(.largeTitle)
-                    .foregroundStyle(.BWL)
-                    .bold()
+                Text("Streak: \(formattedStreak)")
+                    .largeTitleStyle()
                 
-                Text("Final points: \(String(format: "%.0f", state.score))")
-                    .font(.largeTitle)
-                    .foregroundStyle(.BWL)
-                    .bold()
-                
-                Spacer()
+                Text("Final points: \(formattedScore)")
+                    .largeTitleStyle()
                 
                 if state.score > highscore {
+                    Spacer()
                     Text("New Highscore!!!")
-                        .font(.largeTitle)
-                        .foregroundStyle(.BWL)
-                        .bold()
+                        .largeTitleStyle()
                 }
                 
                 Spacer()
                 
-                Text("End game")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.WWL)
-                    .padding()
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .background(.BWL)
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
-                    .padding(.horizontal, 70)
+                ButtonView(text: "End game")
                     .onTapGesture {
-                        if state.score > highscore {
-                            highscore = state.score
-                        }
-                        
-                        if state.streak > streak {
-                            streak = state.streak
-                        }
-                        
-                        state.end.toggle()
+                        endGameAction()
                     }
-                
-                Spacer()
             }
+            
+            Spacer()
         }
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
-        .toolbar(content: {
-            ToolbarItem(placement: .topBarLeading) {
-                Button(action: {
-                    state.end.toggle()
-                }) {
-                    Text("\(Image(systemName: "chevron.left"))")
-                        .fontWeight(.bold)
-                }
-            }
-        })
+    }
+    
+    private var formattedStreak: String {
+        String(format: "%.0f", state.streak)
+    }
+    
+    private var formattedScore: String {
+        String(format: "%.0f", state.score)
+    }
+    
+    private func nextAction() {
+        state.fetched.toggle()
+        state.playing.toggle()
+    }
+    
+    private func endGameAction() {
+        if state.score > highscore {
+            highscore = state.score
+        }
         
+        if state.streak > streak {
+            streak = state.streak
+        }
+        
+        state.end.toggle()
     }
 }
+
+extension Text {
+    func largeTitleStyle() -> some View {
+        self
+            .font(.largeTitle)
+            .bold()
+            .foregroundColor(.BWL)
+    }
+}
+
