@@ -48,9 +48,9 @@ struct StartGameView: View {
                     .padding()
                     .font(.title2)
                     .foregroundStyle(.BWL)
+                    .frame(maxWidth: .infinity)
                     .background(.gray.opacity(0.3))
                     .clipShape(.rect(cornerRadius: 20))
-                    .frame(maxWidth: .infinity)
                 }
                 
                 Spacer()
