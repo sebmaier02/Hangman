@@ -50,7 +50,7 @@ struct StartGameView: View {
                     .foregroundStyle(.BWL)
                     .background(.gray.opacity(0.3))
                     .clipShape(.rect(cornerRadius: 20))
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .frame(maxWidth: .infinity)
                 }
                 
                 Spacer()
@@ -83,18 +83,18 @@ struct StartGameView: View {
                                     .id(category)
                             }
                         }
-                        .onChange(of: categoriesEnabled) {
-                            if !categoriesEnabled {
-                                withAnimation {
-                                    if let firstCategory = categories.first {
-                                        scrollView.scrollTo(firstCategory, anchor: .top)
-                                    }
+                    }
+                    .onChange(of: categoriesEnabled) {
+                        if !categoriesEnabled {
+                            withAnimation {
+                                if let firstCategory = categories.first {
+                                    scrollView.scrollTo(firstCategory, anchor: .top)
                                 }
                             }
                         }
-                        .opacity(categoriesEnabled ? 1 : 0.3)
-                        .disabled(!categoriesEnabled)
                     }
+                    .opacity(categoriesEnabled ? 1 : 0.3)
+                    .disabled(!categoriesEnabled)
                 }
             }
             
