@@ -3,9 +3,11 @@ import SwiftUI
 struct PlayController: View {
     @StateObject var state = StateModel()
     
-    @State var word: String = ""
+    @State var wordArray: [[String]] = Array(repeating: [], count: 8)
     @State var showWarning: Bool = false
     @State var showInfo: Bool = false
+    @State var randomCategory: Int = 0
+    @State var randomWord: Int = 0
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -14,12 +16,16 @@ struct PlayController: View {
             if !state.error {
                 if state.fetched {
                     if state.playing {
-                        GameView(state: state, word: word)
+                        GameView(state: state, word: wordArray[randomCategory][randomWord])
+                            .onAppear{
+                                getRandomNumber()
+                            }
                     } else {
-                        NextLevelView(state: state, word: word)
+                        NextLevelView(state: state, word: wordArray[randomCategory][randomWord])
+                        
                     }
                 } else {
-                    FetchingView(state: state, word: $word)
+                    FetchingView(state: state, wordArray: $wordArray)
                 }
             } else {
                 FetchingErrorView(state: state)
@@ -82,6 +88,11 @@ struct PlayController: View {
                 .foregroundColor(.BWL)
                 .multilineTextAlignment(.center)
         }
+    }
+    
+    func getRandomNumber() {
+        randomCategory = Int.random(in: 0..<wordArray.count)
+        randomWord = Int.random(in: 0..<wordArray[randomWord].count)
     }
 }
 

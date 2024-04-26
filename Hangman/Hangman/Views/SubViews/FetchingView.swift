@@ -10,7 +10,7 @@ import SwiftUI
 struct FetchingView: View {
     @ObservedObject var state: StateModel
     
-    @Binding var word: String
+    @Binding var wordArray: [[String]]
     
     var body: some View {
         VStack {
@@ -23,7 +23,10 @@ struct FetchingView: View {
                 .padding()
         }
         .onAppear {
-            FetchWord(state: state, word: $word).new()
+            FetchWord().fetchDocumentData { fetchedWordArray in
+                wordArray = fetchedWordArray
+                state.fetched = true
+            }
         }
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)

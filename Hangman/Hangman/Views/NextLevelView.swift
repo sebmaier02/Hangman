@@ -86,7 +86,6 @@ struct NextLevelView: View {
     }
     
     private func nextAction() {
-        state.fetched.toggle()
         state.playing.toggle()
     }
     

@@ -22,7 +22,7 @@ struct GameView: View {
         if (word.count < 12) {
             oversize = false
             _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
-            _emptyWordCharArray2 = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
+            _emptyWordCharArray2 = State(initialValue: Array(repeating: " ", count: 0))
         } else {
             let halfsize = uppercasedWord.count / 2;
             oversize = true
@@ -58,13 +58,13 @@ struct GameView: View {
                         
                         VStack {
                             if !oversize {
-                                DisplayLines(wordCharArray: $emptyWordCharArray)
+                                DisplayLines(emptyWordCharArray: $emptyWordCharArray, wordCharArray: $wordCharArray)
                                     .padding(.top, 40)
                             } else {
-                                DisplayLines(wordCharArray: $emptyWordCharArray)
+                                DisplayLines(emptyWordCharArray: $emptyWordCharArray, wordCharArray: $wordCharArray)
                                     .padding(.bottom, 10)
                                 
-                                DisplayLines(wordCharArray: $emptyWordCharArray2)
+                                DisplayLines(emptyWordCharArray: $emptyWordCharArray2, wordCharArray: $wordCharArray)
                             }
                         }
                     }
