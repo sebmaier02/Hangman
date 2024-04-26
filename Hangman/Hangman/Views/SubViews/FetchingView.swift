@@ -10,11 +10,13 @@ import SwiftUI
 struct FetchingView: View {
     @ObservedObject var state: StateModel
     
+    let fetch = FetchWord()
+    
     @Binding var wordArray: [[String]]
     
     var body: some View {
         VStack {
-            Text("Fetching new word")
+            Text("Fetching words")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.BWL)
@@ -23,7 +25,7 @@ struct FetchingView: View {
                 .padding()
         }
         .onAppear {
-            FetchWord().fetchDocumentData { fetchedWordArray in
+            fetch.fetchDocumentData { fetchedWordArray in
                 wordArray = fetchedWordArray
                 state.fetched = true
             }

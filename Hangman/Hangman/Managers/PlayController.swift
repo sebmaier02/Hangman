@@ -17,12 +17,11 @@ struct PlayController: View {
                 if state.fetched {
                     if state.playing {
                         GameView(state: state, word: wordArray[randomCategory][randomWord])
+                    } else {
+                        NextLevelView(state: state, word: wordArray[randomCategory][randomWord])
                             .onAppear{
                                 getRandomNumber()
                             }
-                    } else {
-                        NextLevelView(state: state, word: wordArray[randomCategory][randomWord])
-                        
                     }
                 } else {
                     FetchingView(state: state, wordArray: $wordArray)
@@ -92,7 +91,8 @@ struct PlayController: View {
     
     func getRandomNumber() {
         randomCategory = Int.random(in: 0..<wordArray.count)
-        randomWord = Int.random(in: 0..<wordArray[randomWord].count)
+        randomWord = Int.random(in: 0..<wordArray[randomCategory].count)
+        print("Word: \(wordArray[randomCategory][randomWord])")
     }
 }
 

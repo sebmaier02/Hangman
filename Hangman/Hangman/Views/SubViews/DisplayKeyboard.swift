@@ -13,10 +13,9 @@ struct DisplayKeyboard: View {
     @Binding var errors: Int
     @Binding var wordCharArray: [Character]
     @Binding var emptyWordCharArray: [Character]
-    @Binding var emptyWordCharArray2: [Character]
-    @Binding var oversize: Bool
     
     @State var tapped: Bool = false
+    @State var correct: Bool = false
     @State var color = Color.gray.opacity(0.3)
     
     var character: Character
@@ -35,40 +34,27 @@ struct DisplayKeyboard: View {
             .onTapGesture {
                 guard !completed, !tapped else { return }
                 
-                tapped = true
-                
-                var foundIndices: [Int] = []
-                
+                var found = false
                 for (index, char) in wordCharArray.enumerated() {
                     if char == character {
-                        foundIndices.append(index)
+                        emptyWordCharArray[index] = character
+                        found = true
                     }
                 }
                 
-                if foundIndices.isEmpty {
+                if found {
+                    color = .correct
+                } else {
                     errors += 1
                     color = .wrong
-                    
                     if errors == 9 {
                         state.gameover.toggle()
                         completed.toggle()
                         state.playing.toggle()
                     }
-                } else {
-                    color = .correct
-                    
-                    for index in foundIndices {
-                        if oversize {
-                            if index < emptyWordCharArray.count {
-                                emptyWordCharArray[index] = character
-                            } else {
-                                emptyWordCharArray2[index - emptyWordCharArray.count] = character
-                            }
-                        } else {
-                            emptyWordCharArray[index] = character
-                        }
-                    }
                 }
+                
+                tapped.toggle()
             }
     }
 }

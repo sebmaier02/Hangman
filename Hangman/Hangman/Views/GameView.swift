@@ -9,9 +9,7 @@ struct GameView: View {
     @State var errors: Int = 0
     @State var wordCharArray: [Character]
     @State var emptyWordCharArray: [Character]
-    @State var emptyWordCharArray2: [Character]
     @State var completed: Bool = false
-    @State var oversize: Bool = false
     
     let alphabetArray: [Alphabet] = [.alphabet1, .alphabet2, .alphabet3, .alphabet4]
     let pictures: [UIImage] = [.hangmanwsvg1, .hangmanwsvg2, .hangmanwsvg3, .hangmanwsvg4, .hangmanwsvg5, .hangmanwsvg6, .hangmanwsvg7, .hangmanwsvg8, .hangmanwsvg9]
@@ -19,16 +17,7 @@ struct GameView: View {
     init(state: StateModel, word: String) {
         let uppercasedWord = word.uppercased()
         _wordCharArray = State(initialValue: Array(uppercasedWord))
-        if (word.count < 12) {
-            oversize = false
-            _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
-            _emptyWordCharArray2 = State(initialValue: Array(repeating: " ", count: 0))
-        } else {
-            let halfsize = uppercasedWord.count / 2;
-            oversize = true
-            _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: halfsize))
-            _emptyWordCharArray2 = State(initialValue: Array(repeating: " ", count: uppercasedWord.count-halfsize))
-        }
+        _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
         self.state = state
     }
     
@@ -57,15 +46,9 @@ struct GameView: View {
                         }
                         
                         VStack {
-                            if !oversize {
+                            
                                 DisplayLines(emptyWordCharArray: $emptyWordCharArray, wordCharArray: $wordCharArray)
                                     .padding(.top, 40)
-                            } else {
-                                DisplayLines(emptyWordCharArray: $emptyWordCharArray, wordCharArray: $wordCharArray)
-                                    .padding(.bottom, 10)
-                                
-                                DisplayLines(emptyWordCharArray: $emptyWordCharArray2, wordCharArray: $wordCharArray)
-                            }
                         }
                     }
                     .frame(alignment: .bottom)
@@ -76,7 +59,7 @@ struct GameView: View {
             ForEach(alphabetArray, id: \.self) { alphabet in
                 HStack(alignment: .center) {
                     ForEach(alphabet.letters, id: \.self) { letter in
-                        DisplayKeyboard(state: state, errors: $errors, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, emptyWordCharArray2: $emptyWordCharArray2, oversize: $oversize, character: letter, completed: $completed)
+                        DisplayKeyboard(state: state, errors: $errors, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, character: letter, completed: $completed)
                     }
                 }
             }
@@ -85,15 +68,11 @@ struct GameView: View {
         .onChange(of: emptyWordCharArray) {
             checkIfEnd()
         }
-        .onChange(of: emptyWordCharArray2) {
-            checkIfEnd()
-        }
         .navigationBarBackButtonHidden(true)
     }
     
     func checkIfEnd() {
-        let combinedEmptyWordCharArray = oversize ? emptyWordCharArray + emptyWordCharArray2 : emptyWordCharArray
-        if combinedEmptyWordCharArray == wordCharArray {
+        if emptyWordCharArray == wordCharArray {
             endgame()
         }
     }
