@@ -8,15 +8,13 @@
 import Foundation
 
 enum Category: String, CaseIterable {
-    case fruitsAndVegetables = "Fruits and Vegetables"
-    case animals = "Animals"
-    case clothing = "Clothing"
-    case meansOfTransport = "Means of Transport"
-    case professions = "Professions"
-    case groceries = "Groceries"
-    case naturalPhenomena = "Natural Phenomena"
-    case householdItems = "Household Items"
-    case musicalInstruments = "Musical Instruments"
-    case sports = "Sports"
+      case animals = "Animals"
+      case movies = "Movies"
+      case geography = "Geography"
+      case sport = "Sport"
+      case food = "Food"
+      case songs = "Songs"
+      case celebrities = "Celebrities"
+  
 }
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		801257FF2BD914C20029FC00 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 801257FE2BD914C20029FC00 /* FirebaseStorage */; };
-		801258012BDA82B60029FC00 /* wordarrays.json in Resources */ = {isa = PBXBuildFile; fileRef = 801258002BDA82B60029FC00 /* wordarrays.json */; };
 		809538C32BC4428000990887 /* Miology.otf in Resources */ = {isa = PBXBuildFile; fileRef = 809538C22BC4428000990887 /* Miology.otf */; };
 		809538C72BC838F700990887 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 809538C62BC838F700990887 /* FirebaseAnalytics */; };
 		809538C92BC838F700990887 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 809538C82BC838F700990887 /* FirebaseAuth */; };
@@ -42,7 +41,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		801258002BDA82B60029FC00 /* wordarrays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wordarrays.json; sourceTree = "<group>"; };
 		809538C22BC4428000990887 /* Miology.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Miology.otf; sourceTree = "<group>"; };
 		809538C42BC4446900990887 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80B8B28A2BD6C52F00B574CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		809538C02BC4425D00990887 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
-				801258002BDA82B60029FC00 /* wordarrays.json */,
 				809538C12BC4426A00990887 /* Fonts */,
 			);
 			path = Ressources;
@@ -298,7 +295,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				801258012BDA82B60029FC00 /* wordarrays.json in Resources */,
 				962494802B8238DA00ABCF5E /* Preview Assets.xcassets in Resources */,
 				80B8B28B2BD6C52F00B574CE /* GoogleService-Info.plist in Resources */,
 				9624947D2B8238DA00ABCF5E /* Assets.xcassets in Resources */,
