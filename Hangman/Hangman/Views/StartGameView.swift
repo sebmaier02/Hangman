@@ -10,13 +10,16 @@ import SwiftUI
 struct StartGameView: View {
     @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
+    @AppStorage("customHighscore") var customHighscore: Double = 0
+    @AppStorage("customStreak") var customStreak: Double = 0
     
     @State var showInfo: Bool = false
-    @State var categoriesEnabled: Bool = false
+    @State var customMode: Bool = false
     
     @Environment(\.presentationMode) var presentationMode
     
     let categories: [Category] = Category.allCases
+    @State var playCategories: [String] = Category.allCasesSingular
     
     var body: some View {
         ZStack {
@@ -27,6 +30,7 @@ struct StartGameView: View {
                         .foregroundStyle(.BWL)
                         .bold()
                         .padding(.leading, 10)
+                        .transition(.scale)
                     
                     Spacer()
                 }
@@ -36,13 +40,13 @@ struct StartGameView: View {
                         VStack {
                             Text("Longest Streak")
                             
-                            Text("\(String(format: "%.0f", streak))")
+                            Text(customMode ? "\(String(format: "%.0f", customStreak))" : "\(String(format: "%.0f", streak))")
                         }
                         
                         VStack {
                             Text("Highest points")
                             
-                            Text("\(String(format: "%.0f", highscore))")
+                            Text(customMode ? "\(String(format: "%.0f", customHighscore))": "\(String(format: "%.0f", highscore))")
                         }
                     }
                     .padding()
@@ -60,8 +64,8 @@ struct StartGameView: View {
                 Spacer(minLength: 200)
                 
                 HStack {
-                    Toggle(isOn: $categoriesEnabled){
-                        Text("Categories")
+                    Toggle(isOn: $customMode){
+                        Text("Custom mode")
                             .font(.largeTitle)
                             .foregroundStyle(.BWL)
                             .bold()
@@ -79,30 +83,37 @@ struct StartGameView: View {
                             ForEach(categories.indices, id: \.self) { index in
                                 let category = categories[index]
                                 let isLeftElement = index % 2 == 0 // Überprüfe, ob der Index gerade ist, um das linke Element zu identifizieren
-                                CategoryView(text: category.rawValue, categoriesEnabled: $categoriesEnabled, left: isLeftElement)
+                                CategoryView(text: category, categoriesEnabled: $customMode, selectedCategories: $playCategories, left: isLeftElement)
                                     .id(category)
                             }
                         }
+                        Spacer(minLength: 150)
                     }
-                    .onChange(of: categoriesEnabled) {
-                        if !categoriesEnabled {
+                    .onChange(of: customMode) {
+                        if !customMode {
                             withAnimation {
                                 if let firstCategory = categories.first {
                                     scrollView.scrollTo(firstCategory, anchor: .top)
                                 }
                             }
+                            playCategories = Category.allCasesSingular
+                        } else {
+                            playCategories = []
                         }
+                        print(playCategories)
                     }
-                    .opacity(categoriesEnabled ? 1 : 0.3)
-                    .disabled(!categoriesEnabled)
+                    .opacity(customMode ? 1 : 0.3)
+                    .disabled(!customMode)
                 }
             }
+            
+            
             
             VStack {
                 Spacer()
                 
                 NavigationLink{
-                    PlayController()
+                    PlayController(categories: $playCategories, customMode: customMode)
                 } label: {
                     ButtonView(text: "Start")
                         .padding(.bottom, 30)

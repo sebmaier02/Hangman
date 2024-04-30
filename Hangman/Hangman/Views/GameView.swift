@@ -3,10 +3,6 @@ import SwiftUI
 struct GameView: View {
     @ObservedObject var state: StateModel
     
-    @AppStorage("highscore") var highscore: Double = 0
-    @AppStorage("streak") var streak: Double = 0
-    
-    
     @State var errors: Int = 0
     @State var wordCharArray: [Character]
     @State var completed: Bool = false

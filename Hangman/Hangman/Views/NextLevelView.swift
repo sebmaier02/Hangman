@@ -5,8 +5,12 @@ struct NextLevelView: View {
     
     @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
+    @AppStorage("customHighscore") var customHighscore: Double = 0
+    @AppStorage("customStreak") var customStreak: Double = 0
     
     var word: String
+    
+    var customMode: Bool
     
     var body: some View {
         VStack {
@@ -57,10 +61,18 @@ struct NextLevelView: View {
                 Text("Final points: \(formattedScore)")
                     .largeTitleStyle()
                 
-                if state.score > highscore {
-                    Spacer()
-                    Text("New Highscore!!!")
-                        .largeTitleStyle()
+                if customMode {
+                    if state.score > customHighscore {
+                        Spacer()
+                        Text("New Highscore!!!")
+                            .largeTitleStyle()
+                    }
+                } else {
+                    if state.score > highscore {
+                        Spacer()
+                        Text("New Highscore!!!")
+                            .largeTitleStyle()
+                    }
                 }
                 
                 Spacer()
@@ -86,16 +98,26 @@ struct NextLevelView: View {
     }
     
     private func nextAction() {
-        state.playing.toggle()
+        state.prepareWord = true
     }
     
     private func endGameAction() {
-        if state.score > highscore {
-            highscore = state.score
-        }
-        
-        if state.streak > streak {
-            streak = state.streak
+        if customMode {
+            if state.score > customHighscore {
+                customHighscore = state.score
+            }
+            
+            if state.streak > customStreak {
+                customStreak = state.streak
+            }
+        } else {
+            if state.score > highscore {
+                highscore = state.score
+            }
+            
+            if state.streak > streak {
+                streak = state.streak
+            }
         }
         
         state.end.toggle()

@@ -2,13 +2,14 @@ import SwiftUI
 
 struct PlayController: View {
     @StateObject var state = StateModel()
-  @State var keyValueDict: [Character: Bool] = ["D": false, "O": false, "G": false ]
-    
-    @State var wordArray: [[String]] = Array(repeating: [], count: 8)
+    @State var keyValueDict: [Character: Bool] = [:]
+    @State var wordArray: [[String]] = []
     @State var showWarning: Bool = false
     @State var showInfo: Bool = false
     @State var randomCategory: Int = 0
     @State var randomWord: Int = 0
+    @Binding var categories: [String]
+    var customMode: Bool
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -16,17 +17,21 @@ struct PlayController: View {
         VStack {
             if !state.error {
                 if state.fetched {
-                    if state.playing {
+                    if state.playing && !state.prepareWord {
                         GameView(state: state, word: wordArray[randomCategory][randomWord], keyValueDict: keyValueDict)
-                    } else {
-                        NextLevelView(state: state, word: wordArray[randomCategory][randomWord])
-                            .onAppear{
+                    } else if !state.prepareWord {
+                        NextLevelView(state: state, word: wordArray[randomCategory][randomWord], customMode: customMode)
+                    } else if state.prepareWord{
+                        ProgressView()
+                            .onAppear {
                                 getRandomNumber()
                                 mapChars()
+                                state.prepareWord = false
+                                state.playing = true
                             }
                     }
                 } else {
-                    FetchingView(state: state, wordArray: $wordArray)
+                    FetchingView(state: state, wordArray: $wordArray, categories: $categories)
                 }
             } else {
                 FetchingErrorView(state: state)
@@ -96,25 +101,20 @@ struct PlayController: View {
         randomWord = Int.random(in: 0..<wordArray[randomCategory].count)
         print("Word: \(wordArray[randomCategory][randomWord])")
     }
-  
-  func mapChars() {
-    keyValueDict = [:]
-    let word = wordArray[randomCategory][randomWord].uppercased()
     
-    for char in word {
-      if char != " " {
-        // Überprüfen, ob der Buchstabe bereits im Dictionary vorhanden ist
-        if keyValueDict[char] == nil {
-          // Wenn nicht, füge ihn mit dem Wert false hinzu
-          keyValueDict[char] = false
+    func mapChars() {
+        keyValueDict = [:]
+        let word = wordArray[randomCategory][randomWord].uppercased()
+        
+        for char in word {
+            if char != " " {
+                // Überprüfen, ob der Buchstabe bereits im Dictionary vorhanden ist
+                if keyValueDict[char] == nil {
+                    // Wenn nicht, füge ihn mit dem Wert false hinzu
+                    keyValueDict[char] = false
+                }
+            }
         }
-      }
+        print(keyValueDict)
     }
-    print(keyValueDict)
-}
-  
-}
-
-#Preview {
-    PlayController()
 }

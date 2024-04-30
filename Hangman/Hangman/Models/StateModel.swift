@@ -1,7 +1,7 @@
 import Foundation
 
 class StateModel: ObservableObject {
-    @Published var playing: Bool = true
+    @Published var playing: Bool = false
     
     @Published var score: Double = 0
     
@@ -14,4 +14,6 @@ class StateModel: ObservableObject {
     @Published var error: Bool = false
     
     @Published var streak: Double = 0
+    
+    @Published var prepareWord: Bool = true
 }

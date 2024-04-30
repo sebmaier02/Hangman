@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct CategoryView: View {
-    var text: String
+    var text: Category
     
     @State var selected: Bool = false
     
     @Binding var categoriesEnabled: Bool
+    @Binding var selectedCategories: [String]
     
     var left: Bool
     
     var body: some View {
-        Text(text)
+        Text(text.stringValue(singular: false))
             .font(.title2)
             .foregroundStyle(.BWL)
             .frame(height: 100)
@@ -26,8 +27,15 @@ struct CategoryView: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .onTapGesture {
                 if categoriesEnabled {
-                    selected.toggle()
+                    if !selected {
+                        selected = true
+                        selectedCategories.append(text.stringValue(singular: true))
+                    } else {
+                        selected = false
+                        selectedCategories.removeAll { $0 == text.stringValue(singular: true) }
+                    }
                 }
+                print(selectedCategories)
             }
             .onChange(of: categoriesEnabled) {
                 if !categoriesEnabled {

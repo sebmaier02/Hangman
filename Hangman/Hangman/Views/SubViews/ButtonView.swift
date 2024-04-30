@@ -16,10 +16,9 @@ struct ButtonView: View {
             .bold()
             .foregroundStyle(.WWL)
             .padding()
-            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 60)
             .background(.BWL)
             .clipShape(.rect(cornerRadius: 20))
             .shadow(color: .BWL.opacity(0.5), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 0, y: 5)
-            .padding(.horizontal, 70)
     }
 }

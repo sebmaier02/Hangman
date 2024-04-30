@@ -13,6 +13,7 @@ struct FetchingView: View {
     let fetch = FetchWord()
     
     @Binding var wordArray: [[String]]
+    @Binding var categories: [String]
     
     var body: some View {
         VStack {
@@ -25,7 +26,7 @@ struct FetchingView: View {
                 .padding()
         }
         .onAppear {
-            fetch.fetchDocumentData { fetchedWordArray in
+            fetch.fetchDocumentData(for: categories) { fetchedWordArray in
                 wordArray = fetchedWordArray
                 state.fetched = true
             }
