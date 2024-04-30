@@ -10,7 +10,7 @@ class FetchWord {
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 if let data = document.data() as? [String: [String]] {
-                    var wordArray: [[String]] = Array(repeating: [], count: 8)
+                    var wordArray: [[String]] = Array(repeating: [], count: 7)
                     
                     if let array = data["animal"] {
                         print("Animals: \(array)")
@@ -42,14 +42,9 @@ class FetchWord {
                         wordArray[5] = array
                     }
                     
-                    if let array = data["science"] {
-                        print("Science: \(array)")
-                        wordArray[6] = array
-                    }
-                    
                     if let array = data["celebrities"] {
                         print("Celebrities: \(array)")
-                        wordArray[7] = array
+                        wordArray[6] = array
                     }
                     
                     // Hier ähnlich für andere Kategorien

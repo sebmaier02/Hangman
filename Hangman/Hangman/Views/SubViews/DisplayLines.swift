@@ -1,75 +1,102 @@
-//
-//  DisplayLines.swift
-//  Hangman
-//
-//  Created by Sebastian Maier on 22.04.24.
-//
-
 import SwiftUI
 
 struct DisplayLines: View {
-    @Binding var emptyWordCharArray: [Character]
-    @Binding var wordCharArray: [Character]
+  @Binding var wordCharArray: [Character]
+  @Binding var keyValueDict: [Character: Bool]
+  
+  let underscore: UIImage = .unterstrich1
     
-    let underscore: UIImage = .unterstrich1
-    
-    var body: some View {
-        VStack {
-            ForEach(0..<splitIntoWords().count, id: \.self) { index in
-                let word = splitIntoWords()[index]
-                let offset = calculateOffset(for: index)
-                
-                HStack {
-                    ForEach(0..<word.count, id: \.self) { charIndex in
+  var body: some View {
+    VStack {
+        ForEach(Array(splitIntoLines().enumerated()), id: \.0) { index, line in
+            HStack {
+                ForEach(Array(line.enumerated()), id: \.0) { charIndex, char in
+                    if char != " " {
                         VStack {
-                            Text("\(emptyWordCharArray[charIndex + offset + index])")
-                                .font(Font.custom("Miology", size: 20))
-                                .foregroundStyle(.white)
-                                .frame(maxWidth: 20)
-                                .padding(.bottom, -20)
+                            if keyValueDict[char] ?? false {
+                                Text("\(char)")
+                                    .font(Font.custom("Miology", size: 20))
+                                    .foregroundStyle(.white)
+                                    .frame(maxWidth: 20)
+                                    .padding(.bottom, -20)
+                            } else {
+                                Text(" ")
+                                    .font(Font.custom("Miology", size: 20))
+                                    .foregroundStyle(.white)
+                                    .frame(maxWidth: 20)
+                                    .padding(.bottom, -20)
+                            }
                             
                             Image(uiImage: underscore)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: 20)
                         }
+                    } else {
+                        VStack {
+                        }
+                        .frame(maxWidth: 20)
                     }
                 }
-                .padding(.horizontal, 40)
             }
+            .padding(.horizontal, 40)
         }
+    }
+
+  }
+  
+  // Function to split the character array into lines based on character count limits
+  func splitIntoLines() -> [[Character]] {
+      var lines: [[Character]] = [[]]
+      var currentLineLength: Int = 0
+      
+      for word in splitIntoWords() {
+          let wordLength = word.count
+          if currentLineLength + wordLength > 12 {
+              // Prüfe, ob das letzte Zeichen im aktuellen Array ein Leerzeichen ist, bevor eine neue Zeile erstellt wird
+              if lines[lines.endIndex - 1].last == " " {
+                  lines[lines.endIndex - 1].removeLast()
+              }
+              
+              lines.append([])
+              currentLineLength = 0  // Rücksetzen der Zeilenlänge für die neue Zeile
+          }
+          lines[lines.endIndex - 1] += word
+          currentLineLength += wordLength
+      }
+      
+      // Entferne ein eventuell letztes Leerzeichen auch am Ende der letzten Zeile
+      if lines.last?.last == " " {
+          lines[lines.endIndex - 1].removeLast()
+      }
+      
+      return lines
+  }
+
+  
+  // Function to split the input string into words including spaces
+  func splitIntoWords() -> [[Character]] {
+    var words: [[Character]] = [[]]
+    var newWord = true
+    
+    for char in wordCharArray {
+      if char == " " {
+        if !newWord {
+          words.append([char])
+          newWord = true
+        } else {
+          words[words.count - 1].append(char)
+        }
+      } else {
+        if newWord {
+          words.append([char])
+          newWord = false
+        } else {
+          words[words.count - 1].append(char)
+        }
+      }
     }
     
-    // Funktion zum Berechnen des Offsets basierend auf dem aktuellen Index
-    func calculateOffset(for currentIndex: Int) -> Int {
-        var offset = 0
-        var skippedSpaces = 0
-        
-        // Summiere die Längen der Wörter vor dem aktuellen Wort
-        for i in 0..<currentIndex {
-            offset += splitIntoWords()[i].count
-        }
-        
-        return offset
-    }
-    
-    // Funktion zum Aufteilen des Wortes in einzelne Wörter
-    func splitIntoWords() -> [[Character]] {
-        var words: [[Character]] = [[]]
-        
-        for char in wordCharArray {
-            if char == " " {
-                if !words.last!.isEmpty {
-                    words.append([])
-                }
-            } else {
-                words[words.count - 1].append(char)
-            }
-        }
-        
-        // Entferne leere Arrays
-        words = words.filter { !$0.isEmpty }
-        
-        return words
-    }
+    return words
+  }
 }

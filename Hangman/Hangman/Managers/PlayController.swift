@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PlayController: View {
     @StateObject var state = StateModel()
+  @State var keyValueDict: [Character: Bool] = ["D": false, "O": false, "G": false ]
     
     @State var wordArray: [[String]] = Array(repeating: [], count: 8)
     @State var showWarning: Bool = false
@@ -16,11 +17,12 @@ struct PlayController: View {
             if !state.error {
                 if state.fetched {
                     if state.playing {
-                        GameView(state: state, word: wordArray[randomCategory][randomWord])
+                        GameView(state: state, word: wordArray[randomCategory][randomWord], keyValueDict: keyValueDict)
                     } else {
                         NextLevelView(state: state, word: wordArray[randomCategory][randomWord])
                             .onAppear{
                                 getRandomNumber()
+                                mapChars()
                             }
                     }
                 } else {
@@ -94,6 +96,23 @@ struct PlayController: View {
         randomWord = Int.random(in: 0..<wordArray[randomCategory].count)
         print("Word: \(wordArray[randomCategory][randomWord])")
     }
+  
+  func mapChars() {
+    keyValueDict = [:]
+    let word = wordArray[randomCategory][randomWord].uppercased()
+    
+    for char in word {
+      if char != " " {
+        // Überprüfen, ob der Buchstabe bereits im Dictionary vorhanden ist
+        if keyValueDict[char] == nil {
+          // Wenn nicht, füge ihn mit dem Wert false hinzu
+          keyValueDict[char] = false
+        }
+      }
+    }
+    print(keyValueDict)
+}
+  
 }
 
 #Preview {

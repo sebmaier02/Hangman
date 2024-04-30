@@ -6,19 +6,21 @@ struct GameView: View {
     @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
     
+    
     @State var errors: Int = 0
     @State var wordCharArray: [Character]
-    @State var emptyWordCharArray: [Character]
     @State var completed: Bool = false
+    @State var keyValueDict: [Character: Bool]
     
     let alphabetArray: [Alphabet] = [.alphabet1, .alphabet2, .alphabet3, .alphabet4]
     let pictures: [UIImage] = [.hangmanwsvg1, .hangmanwsvg2, .hangmanwsvg3, .hangmanwsvg4, .hangmanwsvg5, .hangmanwsvg6, .hangmanwsvg7, .hangmanwsvg8, .hangmanwsvg9]
     
-    init(state: StateModel, word: String) {
+  init(state: StateModel, word: String, keyValueDict: [Character: Bool] ) {
         let uppercasedWord = word.uppercased()
+        _keyValueDict = State(initialValue: keyValueDict)
         _wordCharArray = State(initialValue: Array(uppercasedWord))
-        _emptyWordCharArray = State(initialValue: Array(repeating: " ", count: uppercasedWord.count))
         self.state = state
+      
     }
     
     var body: some View {
@@ -46,8 +48,8 @@ struct GameView: View {
                         }
                         
                         VStack {
-                            
-                                DisplayLines(emptyWordCharArray: $emptyWordCharArray, wordCharArray: $wordCharArray)
+                                
+                                DisplayLines(wordCharArray: $wordCharArray, keyValueDict: $keyValueDict)
                                     .padding(.top, 40)
                         }
                     }
@@ -59,20 +61,20 @@ struct GameView: View {
             ForEach(alphabetArray, id: \.self) { alphabet in
                 HStack(alignment: .center) {
                     ForEach(alphabet.letters, id: \.self) { letter in
-                        DisplayKeyboard(state: state, errors: $errors, wordCharArray: $wordCharArray, emptyWordCharArray: $emptyWordCharArray, character: letter, completed: $completed)
+                        DisplayKeyboard(state: state, errors: $errors, wordCharArray: $wordCharArray, keyValueDict: $keyValueDict, character: letter, completed: $completed)
                     }
                 }
             }
         }
         .padding()
-        .onChange(of: emptyWordCharArray) {
+        .onChange(of: keyValueDict) {
             checkIfEnd()
         }
         .navigationBarBackButtonHidden(true)
     }
     
     func checkIfEnd() {
-        if emptyWordCharArray == wordCharArray {
+      if keyValueDict.allSatisfy({ $0.value == true }) {
             endgame()
         }
     }
@@ -87,4 +89,6 @@ struct GameView: View {
             state.playing.toggle()
         }
     }
+  
+    
 }
