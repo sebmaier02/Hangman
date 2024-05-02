@@ -20,7 +20,7 @@ struct CategoryView: View {
     var body: some View {
         Text(text.stringValue(singular: false))
             .font(.title2)
-            .foregroundStyle(.WWL)
+            .foregroundStyle(selected ? .WWL : .BWL)
             .frame(height: 100)
             .frame(maxWidth: .infinity)
             .background(selected ? Color.correct : Color.gray.opacity(0.3))
