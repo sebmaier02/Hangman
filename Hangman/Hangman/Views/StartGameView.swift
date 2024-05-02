@@ -158,13 +158,20 @@ struct StartGameView: View {
         .onChange(of: playCategories) {
             if customMode {
                 if playCategories.isEmpty {
-                    nothingSelected = true
+                    withAnimation {
+                        nothingSelected = true
+                    }
+                    
                 }
                 else if nothingSelected == true {
-                    nothingSelected = false
+                    withAnimation {
+                        nothingSelected = false
+                    }
                 }
             } else {
-                nothingSelected = false
+                withAnimation {
+                    nothingSelected = false
+                }
             }
         }
         .padding(.horizontal)

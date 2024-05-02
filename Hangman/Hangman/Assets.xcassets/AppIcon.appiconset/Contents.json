@@ -1,88 +1,111 @@
 {
   "images" : [
     {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-1024.png",
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-40.png",
       "idiom" : "universal",
       "platform" : "ios",
-      "size" : "1024x1024"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-20.png",
-      "idiom" : "universal",
-      "scale" : "1x",
+      "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-40.png",
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-203x.png",
       "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "40x40"
+      "platform" : "ios",
+      "scale" : "3x",
+      "size" : "20x20"
+    },
+    {
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-292x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "2x",
+      "size" : "29x29"
+    },
+    {
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-293x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "3x",
+      "size" : "29x29"
     },
     {
       "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-76.png",
       "idiom" : "universal",
-      "scale" : "1x",
+      "platform" : "ios",
+      "scale" : "2x",
+      "size" : "38x38"
+    },
+    {
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "3x",
+      "size" : "38x38"
+    },
+    {
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-402x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "2x",
+      "size" : "40x40"
+    },
+    {
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-403x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "3x",
+      "size" : "40x40"
+    },
+    {
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-602x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "2x",
+      "size" : "60x60"
+    },
+    {
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-603x 1.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "3x",
+      "size" : "60x60"
+    },
+    {
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "2x",
+      "size" : "64x64"
+    },
+    {
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "3x",
+      "size" : "64x64"
+    },
+    {
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "2x",
+      "size" : "68x68"
+    },
+    {
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-762x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "scale" : "2x",
       "size" : "76x76"
     },
     {
       "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-83.52x.png",
       "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "83.52x83.52"
+      "platform" : "ios",
+      "scale" : "2x",
+      "size" : "83.5x83.5"
     },
     {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-202x.png",
+      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-1024.png",
       "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "202x202"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-203x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "203x203"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-292x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "292x292"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-293x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "293x293"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-402x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "402x402"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-403x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "403x403"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-602x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "602x602"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-603x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "603x603"
-    },
-    {
-      "filename" : "DALLE_2024-05-02_10.40.29_-_A_logo_design_for_a_Hangman_app_featuring_a_simple_stick_figure_standing_on_a_platform_next_to_a_tall_gallows_similar_to_a_childs_drawing._The_logo-762x.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "size" : "762x762"
+      "platform" : "ios",
+      "size" : "1024x1024"
     }
   ],
   "info" : {
