@@ -20,18 +20,23 @@ struct CategoryView: View {
     var body: some View {
         Text(text.stringValue(singular: false))
             .font(.title2)
-            .foregroundStyle(.BWL)
+            .foregroundStyle(.WWL)
             .frame(height: 100)
             .frame(maxWidth: .infinity)
-            .background(selected ? Color.correct.opacity(0.3) : Color.gray.opacity(0.3))
+            .background(selected ? Color.correct : Color.gray.opacity(0.3))
             .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(color: selected ? .correct.opacity(0.5) : .gray.opacity(0), radius: 10, x: 0, y: 5)
             .onTapGesture {
                 if categoriesEnabled {
                     if !selected {
-                        selected = true
+                        withAnimation {
+                            selected = true
+                        }
                         selectedCategories.append(text.stringValue(singular: true))
                     } else {
-                        selected = false
+                        withAnimation {
+                            selected = false
+                        }
                         selectedCategories.removeAll { $0 == text.stringValue(singular: true) }
                     }
                 }

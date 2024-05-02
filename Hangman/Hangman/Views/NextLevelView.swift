@@ -36,7 +36,15 @@ struct NextLevelView: View {
                 
                 Spacer()
                 
-                ButtonView(text: "Next")
+                Text("Next")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(.WWL)
+                    .padding()
+                    .padding(.horizontal, 60)
+                    .background(.correct)
+                    .clipShape(.rect(cornerRadius: 20))
+                    .shadow(color: .correct.opacity(0.5), radius: 10, x: 0, y: 5)
                     .onTapGesture {
                         nextAction()
                     }
@@ -46,6 +54,7 @@ struct NextLevelView: View {
                 
                 Text(word.uppercased())
                     .largeTitleStyle()
+                    .multilineTextAlignment(.center)
                 
                 Image(uiImage: .sadFace)
                     .resizable()
@@ -77,7 +86,15 @@ struct NextLevelView: View {
                 
                 Spacer()
                 
-                ButtonView(text: "End game")
+                Text("End Game")
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(.WWL)
+                    .padding()
+                    .padding(.horizontal, 60)
+                    .background(.wrong)
+                    .clipShape(.rect(cornerRadius: 20))
+                    .shadow(color: .wrong.opacity(0.5), radius: 10, x: 0, y: 5)
                     .onTapGesture {
                         endGameAction()
                     }
@@ -98,7 +115,9 @@ struct NextLevelView: View {
     }
     
     private func nextAction() {
-        state.prepareWord = true
+        withAnimation {
+            state.prepareWord = true
+        }
     }
     
     private func endGameAction() {
@@ -120,7 +139,7 @@ struct NextLevelView: View {
             }
         }
         
-        state.end.toggle()
+        state.end = true
     }
 }
 

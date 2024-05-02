@@ -7,12 +7,11 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 
-                Text("Welcome to Hangman")
+                Text("Welcome to")
                     .font(.largeTitle)
                     .foregroundStyle(.BWL)
                     .bold()
                 
-                Spacer()
                 
                 Image(uiImage: .homescreen)
                     .resizable()
@@ -22,13 +21,28 @@ struct ContentView: View {
                 Spacer()
                 
                 NavigationLink(destination: StartGameView()) {
-                    ButtonView(text: "Play")
+                    Text("Play")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(.WWL)
+                        .padding()
+                        .padding(.horizontal, 60)
+                        .background(.correct)
+                        .clipShape(.rect(cornerRadius: 20))
+                        .shadow(color: .correct.opacity(0.5), radius: 10, x: 0, y: 5)
                 }
-                
                 
                 Spacer()
             }
             .padding(.horizontal)
+            .toolbar(content: {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape.circle")
+                            .foregroundStyle(.BWL)
+                    }
+                }
+            })
         }
         .tint(.BWL)
         .navigationBarBackButtonHidden(true)

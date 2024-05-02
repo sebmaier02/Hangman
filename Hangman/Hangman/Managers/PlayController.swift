@@ -2,14 +2,23 @@ import SwiftUI
 
 struct PlayController: View {
     @StateObject var state = StateModel()
+    
     @State var keyValueDict: [Character: Bool] = [:]
     @State var wordArray: [[String]] = []
     @State var showWarning: Bool = false
     @State var showInfo: Bool = false
     @State var randomCategory: Int = 0
     @State var randomWord: Int = 0
+    @State var usedWords: Set<String> = []
+    
     @Binding var categories: [String]
+    
     var customMode: Bool
+    
+    @AppStorage("highscore") var highscore: Double = 0
+    @AppStorage("streak") var streak: Double = 0
+    @AppStorage("customHighscore") var customHighscore: Double = 0
+    @AppStorage("customStreak") var customStreak: Double = 0
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -26,8 +35,10 @@ struct PlayController: View {
                             .onAppear {
                                 getRandomNumber()
                                 mapChars()
-                                state.prepareWord = false
-                                state.playing = true
+                                withAnimation {
+                                    state.prepareWord = false
+                                    state.playing = true
+                                }
                             }
                     }
                 } else {
@@ -45,10 +56,13 @@ struct PlayController: View {
         .toolbar(content: {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
-                    showWarning.toggle()
+                    if state.gameover {
+                        endGameAction()
+                    } else {
+                        showWarning.toggle()
+                    }
                 }) {
-                    Text("\(Image(systemName: "chevron.left"))")
-                        .fontWeight(.bold)
+                    Text("\(Image(systemName: "chevron.left.circle"))")
                 }
             }
             
@@ -97,8 +111,19 @@ struct PlayController: View {
     }
     
     func getRandomNumber() {
-        randomCategory = Int.random(in: 0..<wordArray.count)
-        randomWord = Int.random(in: 0..<wordArray[randomCategory].count)
+        var newRandomCategory = Int.random(in: 0..<wordArray.count)
+        var newRandomWord = Int.random(in: 0..<wordArray[newRandomCategory].count)
+        
+        while usedWords.contains(wordArray[newRandomCategory][newRandomWord]) {
+            newRandomCategory = Int.random(in: 0..<wordArray.count)
+            newRandomWord = Int.random(in: 0..<wordArray[newRandomCategory].count)
+        }
+        
+        randomCategory = newRandomCategory
+        randomWord = newRandomWord
+        
+        usedWords.insert(wordArray[randomCategory][randomWord])
+        
         print("Word: \(wordArray[randomCategory][randomWord])")
     }
     
@@ -108,13 +133,33 @@ struct PlayController: View {
         
         for char in word {
             if char != " " {
-                // Überprüfen, ob der Buchstabe bereits im Dictionary vorhanden ist
                 if keyValueDict[char] == nil {
-                    // Wenn nicht, füge ihn mit dem Wert false hinzu
                     keyValueDict[char] = false
                 }
             }
         }
         print(keyValueDict)
+    }
+    
+    func endGameAction() {
+        if customMode {
+            if state.score > customHighscore {
+                customHighscore = state.score
+            }
+            
+            if state.streak > customStreak {
+                customStreak = state.streak
+            }
+        } else {
+            if state.score > highscore {
+                highscore = state.score
+            }
+            
+            if state.streak > streak {
+                streak = state.streak
+            }
+        }
+        
+        state.end.toggle()
     }
 }

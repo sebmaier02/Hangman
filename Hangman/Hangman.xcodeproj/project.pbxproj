@@ -27,10 +27,10 @@
 		962F71332BD6DDB000FA40FA /* DisplayLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962F71322BD6DDB000FA40FA /* DisplayLines.swift */; };
 		962F71352BD6DE0F00FA40FA /* DisplayKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962F71342BD6DE0F00FA40FA /* DisplayKeyboard.swift */; };
 		962F71382BD6F1FF00FA40FA /* Alphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962F71372BD6F1FF00FA40FA /* Alphabet.swift */; };
-		962F713A2BD6F76E00FA40FA /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962F71392BD6F76E00FA40FA /* ButtonView.swift */; };
 		967C6F5C2BD124CA00BC186A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C6F5B2BD124CA00BC186A /* Category.swift */; };
 		967FA45D2BC82EC700A70BA9 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = 967FA45C2BC82EC700A70BA9 /* SVGKit */; };
 		967FA45F2BC82EC700A70BA9 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 967FA45E2BC82EC700A70BA9 /* SVGKitSwift */; };
+		968662872BE2B14800A69C52 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968662862BE2B14800A69C52 /* SettingsView.swift */; };
 		968EEEDF2BD6A7B400EE25CC /* RulesSheetBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968EEEDE2BD6A7B400EE25CC /* RulesSheetBackground.swift */; };
 		968EEEE12BD6A80900EE25CC /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968EEEE02BD6A80900EE25CC /* CategoryView.swift */; };
 		968EEEE32BD6A88800EE25CC /* RulesSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968EEEE22BD6A88800EE25CC /* RulesSheetView.swift */; };
@@ -57,8 +57,8 @@
 		962F71322BD6DDB000FA40FA /* DisplayLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLines.swift; sourceTree = "<group>"; };
 		962F71342BD6DE0F00FA40FA /* DisplayKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayKeyboard.swift; sourceTree = "<group>"; };
 		962F71372BD6F1FF00FA40FA /* Alphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alphabet.swift; sourceTree = "<group>"; };
-		962F71392BD6F76E00FA40FA /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		967C6F5B2BD124CA00BC186A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		968662862BE2B14800A69C52 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		968EEEDE2BD6A7B400EE25CC /* RulesSheetBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesSheetBackground.swift; sourceTree = "<group>"; };
 		968EEEE02BD6A80900EE25CC /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		968EEEE22BD6A88800EE25CC /* RulesSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesSheetView.swift; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				962F71342BD6DE0F00FA40FA /* DisplayKeyboard.swift */,
-				962F71392BD6F76E00FA40FA /* ButtonView.swift */,
 				962F71322BD6DDB000FA40FA /* DisplayLines.swift */,
 				968EEEEA2BD6ABEC00EE25CC /* FetchingView.swift */,
 				968EEEE82BD6AB2100EE25CC /* FetchingErrorView.swift */,
@@ -200,6 +199,7 @@
 				80F3CE2E2B823D3B00E51AF7 /* GameView.swift */,
 				962494862B827F9500ABCF5E /* NextLevelView.swift */,
 				968EEEE22BD6A88800EE25CC /* RulesSheetView.swift */,
+				968662862BE2B14800A69C52 /* SettingsView.swift */,
 				962F713B2BD6F7F600FA40FA /* SubViews */,
 			);
 			path = Views;
@@ -317,7 +317,6 @@
 				967C6F5C2BD124CA00BC186A /* Category.swift in Sources */,
 				968EEEE32BD6A88800EE25CC /* RulesSheetView.swift in Sources */,
 				962F71382BD6F1FF00FA40FA /* Alphabet.swift in Sources */,
-				962F713A2BD6F76E00FA40FA /* ButtonView.swift in Sources */,
 				962F71352BD6DE0F00FA40FA /* DisplayKeyboard.swift in Sources */,
 				80F3CE2F2B823D3B00E51AF7 /* GameView.swift in Sources */,
 				968EEEDF2BD6A7B400EE25CC /* RulesSheetBackground.swift in Sources */,
@@ -327,6 +326,7 @@
 				962494872B827F9500ABCF5E /* NextLevelView.swift in Sources */,
 				968EEEEB2BD6ABEC00EE25CC /* FetchingView.swift in Sources */,
 				968EEEE12BD6A80900EE25CC /* CategoryView.swift in Sources */,
+				968662872BE2B14800A69C52 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

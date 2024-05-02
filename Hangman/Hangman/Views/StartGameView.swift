@@ -15,6 +15,10 @@ struct StartGameView: View {
     
     @State var showInfo: Bool = false
     @State var customMode: Bool = false
+    @State var nothingSelected: Bool = false
+    @State var streakText: Double = 0
+    @State var pointsText: Double = 0
+    @State var scrollDisabled: Bool = true
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -30,7 +34,6 @@ struct StartGameView: View {
                         .foregroundStyle(.BWL)
                         .bold()
                         .padding(.leading, 10)
-                        .transition(.scale)
                     
                     Spacer()
                 }
@@ -40,13 +43,15 @@ struct StartGameView: View {
                         VStack {
                             Text("Longest Streak")
                             
-                            Text(customMode ? "\(String(format: "%.0f", customStreak))" : "\(String(format: "%.0f", streak))")
+                            Text("\(String(format: "%.0f", streakText))")
+                                .contentTransition(.numericText())
                         }
                         
                         VStack {
                             Text("Highest points")
                             
-                            Text(customMode ? "\(String(format: "%.0f", customHighscore))": "\(String(format: "%.0f", highscore))")
+                            Text("\(String(format: "%.0f", pointsText))")
+                                .contentTransition(.numericText())
                         }
                     }
                     .padding()
@@ -64,12 +69,17 @@ struct StartGameView: View {
                 Spacer(minLength: 200)
                 
                 HStack {
-                    Toggle(isOn: $customMode){
+                    Toggle(isOn: $customMode) {
                         Text("Custom mode")
                             .font(.largeTitle)
                             .foregroundStyle(.BWL)
                             .bold()
                             .padding(.leading, 10)
+                    }
+                    .onChange(of: customMode) {
+                        withAnimation {
+                            scrollDisabled.toggle()
+                        }
                     }
                     .padding(.trailing, 10)
                     .tint(.correct)
@@ -89,8 +99,8 @@ struct StartGameView: View {
                         }
                         Spacer(minLength: 150)
                     }
-                    .onChange(of: customMode) {
-                        if !customMode {
+                    .onChange(of: scrollDisabled) {
+                        if scrollDisabled {
                             withAnimation {
                                 if let firstCategory = categories.first {
                                     scrollView.scrollTo(firstCategory, anchor: .top)
@@ -102,12 +112,10 @@ struct StartGameView: View {
                         }
                         print(playCategories)
                     }
-                    .opacity(customMode ? 1 : 0.3)
-                    .disabled(!customMode)
+                    .opacity(scrollDisabled ? 0.3 : 1)
+                    .disabled(scrollDisabled)
                 }
             }
-            
-            
             
             VStack {
                 Spacer()
@@ -115,9 +123,48 @@ struct StartGameView: View {
                 NavigationLink{
                     PlayController(categories: $playCategories, customMode: customMode)
                 } label: {
-                    ButtonView(text: "Start")
+                    Text("Start")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(.WWL)
+                        .padding()
+                        .padding(.horizontal, 60)
+                        .background(nothingSelected ? .BWL.opacity(0.4) : .correct)
+                        .clipShape(.rect(cornerRadius: 20))
+                        .shadow(color: nothingSelected ? .BWL.opacity(0.5) : .correct.opacity(0.5), radius: 10, x: 0, y:5)
                         .padding(.bottom, 30)
                 }
+                .disabled(nothingSelected)
+                
+            }
+        }
+        .onAppear {
+            streakText = streak
+            pointsText = highscore
+        }
+        .onChange(of: customMode) {
+            if customMode {
+                withAnimation {
+                    streakText = customStreak
+                    pointsText = customHighscore
+                }
+            } else {
+                withAnimation {
+                    streakText = streak
+                    pointsText = highscore
+                }
+            }
+        }
+        .onChange(of: playCategories) {
+            if customMode {
+                if playCategories.isEmpty {
+                    nothingSelected = true
+                }
+                else if nothingSelected == true {
+                    nothingSelected = false
+                }
+            } else {
+                nothingSelected = false
             }
         }
         .padding(.horizontal)
@@ -127,8 +174,7 @@ struct StartGameView: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("\(Image(systemName: "chevron.left"))")
-                        .fontWeight(.bold)
+                    Text("\(Image(systemName: "chevron.left.circle"))")
                 }
             }
             

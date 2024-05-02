@@ -28,6 +28,7 @@ struct FetchingView: View {
         .onAppear {
             fetch.fetchDocumentData(for: categories) { fetchedWordArray in
                 wordArray = fetchedWordArray
+                print(wordArray)
                 state.fetched = true
             }
         }
