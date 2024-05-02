@@ -92,6 +92,7 @@ struct StartGameView: View {
                 ScrollViewReader { scrollView in
                     ScrollView(showsIndicators: false) {
                         Spacer(minLength: 15)
+                            .id("firstSpacer")
                         LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 16) {
                             ForEach(categories.indices, id: \.self) { index in
                                 let category = categories[index]
@@ -106,9 +107,7 @@ struct StartGameView: View {
                     .onChange(of: scrollDisabled) {
                         if scrollDisabled {
                             withAnimation {
-                                if let firstCategory = categories.first {
-                                    scrollView.scrollTo(firstCategory, anchor: .top)
-                                }
+                                    scrollView.scrollTo("firstSpacer", anchor: .top)
                             }
                             playCategories = Category.allCasesSingular
                         } else {
