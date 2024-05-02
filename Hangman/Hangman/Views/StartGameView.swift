@@ -64,37 +64,41 @@ struct StartGameView: View {
                 
                 Spacer()
             }
+            .padding(.horizontal)
             
             VStack {
                 Spacer(minLength: 200)
                 
-                HStack {
-                    Toggle(isOn: $customMode) {
-                        Text("Custom mode")
-                            .font(.largeTitle)
-                            .foregroundStyle(.BWL)
-                            .bold()
-                            .padding(.leading, 10)
-                    }
-                    .onChange(of: customMode) {
-                        withAnimation {
-                            scrollDisabled.toggle()
-                        }
-                    }
-                    .padding(.trailing, 10)
-                    .tint(.correct)
+                
+                Toggle(isOn: $customMode) {
+                    Text("Custom mode")
+                        .font(.largeTitle)
+                        .foregroundStyle(.BWL)
+                        .bold()
+                        .padding(.leading, 10)
                 }
+                .onChange(of: customMode) {
+                    withAnimation {
+                        scrollDisabled.toggle()
+                    }
+                }
+                .padding(.trailing, 10)
+                .tint(.correct)
+                .padding(.horizontal)
+                
                 
                 Spacer(minLength: 20)
                 
                 ScrollViewReader { scrollView in
                     ScrollView(showsIndicators: false) {
+                        Spacer(minLength: 15)
                         LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 16) {
                             ForEach(categories.indices, id: \.self) { index in
                                 let category = categories[index]
                                 let isLeftElement = index % 2 == 0 // Überprüfe, ob der Index gerade ist, um das linke Element zu identifizieren
                                 CategoryView(text: category, categoriesEnabled: $customMode, selectedCategories: $playCategories, left: isLeftElement)
                                     .id(category)
+                                    .padding(isLeftElement ? .leading : .trailing)
                             }
                         }
                         Spacer(minLength: 150)
@@ -131,12 +135,13 @@ struct StartGameView: View {
                         .padding(.horizontal, 60)
                         .background(nothingSelected ? .BWL.opacity(0.4) : .correct)
                         .clipShape(.rect(cornerRadius: 20))
-                        .shadow(color: nothingSelected ? .BWL.opacity(0.5) : .correct.opacity(0.5), radius: 10, x: 0, y:5)
+                        .shadow(color: .BWL.opacity(nothingSelected ? 0 : 0.2), radius: 10, x: 0, y: 5)
                         .padding(.bottom, 30)
                 }
                 .disabled(nothingSelected)
                 
             }
+            .padding(.horizontal)
         }
         .onAppear {
             streakText = streak
@@ -174,7 +179,6 @@ struct StartGameView: View {
                 }
             }
         }
-        .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
         .toolbar(content: {
             ToolbarItem(placement: .topBarLeading) {

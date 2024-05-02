@@ -16,7 +16,6 @@ struct GameView: View {
         _keyValueDict = State(initialValue: keyValueDict)
         _wordCharArray = State(initialValue: Array(uppercasedWord))
         self.state = state
-        
     }
     
     var body: some View {

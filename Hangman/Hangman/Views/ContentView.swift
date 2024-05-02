@@ -29,7 +29,7 @@ struct ContentView: View {
                         .padding(.horizontal, 60)
                         .background(.correct)
                         .clipShape(.rect(cornerRadius: 20))
-                        .shadow(color: .correct.opacity(0.5), radius: 10, x: 0, y: 5)
+                        .shadow(color: .BWL.opacity(0.3), radius: 10, x: 0, y: 5)
                 }
                 
                 Spacer()

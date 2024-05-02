@@ -13,12 +13,12 @@ struct PlayController: View {
     
     @Binding var categories: [String]
     
-    var customMode: Bool
-    
     @AppStorage("highscore") var highscore: Double = 0
     @AppStorage("streak") var streak: Double = 0
     @AppStorage("customHighscore") var customHighscore: Double = 0
     @AppStorage("customStreak") var customStreak: Double = 0
+    
+    var customMode: Bool
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -55,14 +55,19 @@ struct PlayController: View {
         }
         .toolbar(content: {
             ToolbarItem(placement: .topBarLeading) {
-                Button(action: {
+                Button {
                     if state.gameover {
                         endGameAction()
                     } else {
                         showWarning.toggle()
                     }
-                }) {
-                    Text("\(Image(systemName: "chevron.left.circle"))")
+                } label: {
+                    if !state.playing && !state.prepareWord {
+                        Image(systemName: "chevron.left.circle")
+                            .foregroundStyle(.WWL)
+                    } else {
+                        Image(systemName: "chevron.left.circle")
+                    }
                 }
             }
             
@@ -70,7 +75,12 @@ struct PlayController: View {
                 Button {
                     showInfo.toggle()
                 } label: {
-                    Image(systemName: "info.circle")
+                    if !state.playing && !state.prepareWord {
+                        Image(systemName: "info.circle")
+                            .foregroundStyle(.WWL)
+                    } else {
+                        Image(systemName: "info.circle")
+                    }
                 }
             }
         })
@@ -79,14 +89,14 @@ struct PlayController: View {
                 state.end.toggle()
             } label: {
                 Text("Leave")
-                    .foregroundStyle(.red)
+                    .foregroundStyle(.wrong)
             }
             
             Button {
                 showWarning.toggle()
             } label: {
                 Text ("Stay")
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.correct)
             }
         } message: {
             Text("If you leave your current score and streak will not be saved.")

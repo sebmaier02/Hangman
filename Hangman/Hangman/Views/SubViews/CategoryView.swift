@@ -25,7 +25,7 @@ struct CategoryView: View {
             .frame(maxWidth: .infinity)
             .background(selected ? Color.correct : Color.gray.opacity(0.3))
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(color: selected ? .correct.opacity(0.5) : .gray.opacity(0), radius: 10, x: 0, y: 5)
+            .shadow(color: .BWL.opacity(selected ? 0.2 : 0), radius: 10, x: 0, y: 5)
             .onTapGesture {
                 if categoriesEnabled {
                     if !selected {

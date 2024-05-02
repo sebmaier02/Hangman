@@ -29,17 +29,15 @@ struct DisplayKeyboard: View {
         color
             .frame(width: 40, height: 50)
             .cornerRadius(5)
-            .shadow(color: color.opacity(0.5), radius: 5, x: 0, y: 5)
+            .shadow(color: .BWL.opacity(tapped ? 0.2 : 0), radius: 5, x: 0, y: 5)
             .overlay() {
                 Text(String(character))
                     .font(Font.custom("Miology", size: 28))
             }
             .onTapGesture {
-                
                 guard !completed, !tapped else { return }
                 
                 var found = false
-                
                 
                 if keyValueDict[character] != nil {
                     found = true
@@ -66,7 +64,9 @@ struct DisplayKeyboard: View {
                     }
                 }
                 
-                tapped.toggle()
+                withAnimation {
+                    tapped = true
+                }
                 
                 triggerFeedback()
             }

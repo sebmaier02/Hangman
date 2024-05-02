@@ -7,6 +7,7 @@ struct NextLevelView: View {
     @AppStorage("streak") var streak: Double = 0
     @AppStorage("customHighscore") var customHighscore: Double = 0
     @AppStorage("customStreak") var customStreak: Double = 0
+    @State var tapped: Bool = false
     
     var word: String
     
@@ -36,18 +37,20 @@ struct NextLevelView: View {
                 
                 Spacer()
                 
-                Text("Next")
-                    .font(.title)
-                    .bold()
-                    .foregroundStyle(.WWL)
-                    .padding()
-                    .padding(.horizontal, 60)
-                    .background(.correct)
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(color: .correct.opacity(0.5), radius: 10, x: 0, y: 5)
-                    .onTapGesture {
-                        nextAction()
-                    }
+                Button{
+                    nextAction()
+                } label: {
+                    Text("Next")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(.BWL)
+                        .padding()
+                        .padding(.horizontal, 60)
+                        .background(.WWL.opacity(0.7))
+                        .clipShape(.rect(cornerRadius: 20))
+                        .shadow(color: .WWL.opacity(0.5), radius: 10, x: 0, y: 5)
+                }
+                
             } else {
                 Text("The word was:")
                     .largeTitleStyle()
@@ -86,24 +89,27 @@ struct NextLevelView: View {
                 
                 Spacer()
                 
-                Text("End Game")
-                    .font(.title)
-                    .bold()
-                    .foregroundStyle(.WWL)
-                    .padding()
-                    .padding(.horizontal, 60)
-                    .background(.wrong)
-                    .clipShape(.rect(cornerRadius: 20))
-                    .shadow(color: .wrong.opacity(0.5), radius: 10, x: 0, y: 5)
-                    .onTapGesture {
-                        endGameAction()
-                    }
+                Button {
+                    endGameAction()
+                } label: {
+                    Text("End Game")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(.BWL)
+                        .padding()
+                        .padding(.horizontal, 60)
+                        .background(.WWL.opacity(0.7))
+                        .clipShape(.rect(cornerRadius: 20))
+                        .shadow(color: .WWL.opacity(0.5), radius: 10, x: 0, y: 5)
+                }
+                    
             }
             
             Spacer()
         }
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
+        .background(state.gameover ? .wrong : .correct)
     }
     
     private var formattedStreak: String {
@@ -148,7 +154,7 @@ extension Text {
         self
             .font(.largeTitle)
             .bold()
-            .foregroundColor(.BWL)
+            .foregroundColor(.WWL)
     }
 }
 
