@@ -10,7 +10,7 @@ Dieses Projekt ist eine Umsetzung des klassischen Hangman-Spiels, entwickelt in 
 
 - Benutzerfreundliche Oberfläche
 - Fehleranzeige und Lebensverwaltung
-- Verschiedene Schwierigkeitsgrade oder Wortlisten (falls vorhanden)
+- Verschiedene Schwierigkeitsgrade oder Wortlisten
 
 ## Verwendung
 
