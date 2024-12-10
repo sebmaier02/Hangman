@@ -4,7 +4,7 @@ Ein einfaches Hangman-Spiel, entwickelt in Swift.
 
 ## Übersicht
 
-Dieses Projekt ist eine Umsetzung des klassischen Hangman-Spiels. Der Spieler muss ein verstecktes Wort erraten, indem er Buchstaben auswählt. Jeder falsche Buchstabe bringt den Spieler dem Verlust eines Lebens näher. Das Ziel ist es, das Wort zu erraten, bevor die Leben aufgebraucht sind.
+Dieses Projekt ist eine Umsetzung des klassischen Hangman-Spiels, entwickelt in Zusammenarbeit mit [Tobias Pummer](https://github.com/TobiasPummer). Der Spieler muss ein verstecktes Wort erraten, indem er Buchstaben auswählt. Jeder falsche Buchstabe bringt den Spieler dem Verlust eines Lebens näher. Das Ziel ist es, das Wort zu erraten, bevor die Leben aufgebraucht sind.
 
 ## Features
 
