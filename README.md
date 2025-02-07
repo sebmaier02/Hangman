@@ -21,20 +21,20 @@ Starte das Spiel und beginne, Buchstaben zu raten. Das Spiel endet, wenn das Wor
 ## UI
 
 <div align="center">
-    <img src="images/image1.png" alt="" width="400">
-    <img src="images/image2.png" alt="" width="400">
+    <img src="images/image1.png" alt="" width="300">
+    <img src="images/image2.png" alt="" width="300">
 </div>
 
 <div align="center">
-    <img src="images/image3.png" alt="" width="400">
-    <img src="images/image4.png" alt="" width="400">
+    <img src="images/image3.png" alt="" width="300">
+    <img src="images/image4.png" alt="" width="300">
 </div>
 
 <div align="center">
-    <img src="images/image5.png" alt="" width="400">
-    <img src="images/image6.png" alt="" width="400">
+    <img src="images/image5.png" alt="" width="300">
+    <img src="images/image6.png" alt="" width="300">
 </div>
 
 <div align="center">
-    <img src="images/image7.png" alt="" width="400">
+    <img src="images/image7.png" alt="" width="300">
 </div>
