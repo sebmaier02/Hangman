@@ -18,8 +18,6 @@ Starte das Spiel und beginne, Buchstaben zu raten. Das Spiel endet, wenn das Wor
 
 ## UI
 
-## UI
-
 <div align="center">
     <img src="images/image1.png" alt="" width="300">
     <img src="images/image2.png" alt="" width="300">
