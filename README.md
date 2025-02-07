@@ -16,3 +16,6 @@ Dieses Projekt ist eine Umsetzung des klassischen Hangman-Spiels, entwickelt in 
 
 Starte das Spiel und beginne, Buchstaben zu raten. Das Spiel endet, wenn das Wort erraten wurde oder die Leben aufgebraucht sind.
 
+## UI
+
+![Homescreen](images/image1.png)
